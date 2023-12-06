@@ -24,3 +24,12 @@ def plot_money_history(money_history, title='Money vs Number of Bets', change_co
             ax.set_facecolor('xkcd:light red')
 
     plt.show()
+
+
+def plot_number_of_bets(money_histories, title='Number of bets until losing all the money'):
+    num_bets = [len(money_history) for money_history in money_histories]
+    plt.hist(num_bets, bins=10)
+    # plt.xlabel('Number of Bets')
+    plt.ylabel('Number of bets')
+    plt.title(title)
+    plt.show()
