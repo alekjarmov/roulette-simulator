@@ -10,7 +10,7 @@ def gain_at_some_point(money_history) -> bool:
     return False
 
 
-def plot_money_history(money_history, title='Money vs Number of Bets', change_colors=False):
+def plot_money_history(money_history, title='Money vs Number of Bets', change_colors=False, minimum_line=False):
     plt.plot(money_history)
     plt.xlabel('Number of Bets')
     plt.ylabel('Money')
@@ -22,6 +22,9 @@ def plot_money_history(money_history, title='Money vs Number of Bets', change_co
             ax.set_facecolor('xkcd:light green')
         else:
             ax.set_facecolor('xkcd:light red')
+    if minimum_line:
+        plt.axhline(y=min(money_history), color='r', linestyle='-')
+        plt.text(0, min(money_history), 'Minimum: ' + str(min(money_history)))
 
     plt.show()
 
