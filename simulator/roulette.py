@@ -26,7 +26,11 @@ class Roulette:
 
     def make_single_bet(self, bet_amount):
         return self.__calculate_bet(bet_amount, 1)
-
+    
+    def make_specific_single_bet(self, bet_amount, number):
+        num = self.spin()
+        return bet_amount*35 if num == number else -bet_amount
+    
     def __calculate_bet(self, bet_amount, num_betting_fields):
         """
             Function that makes a bet and returns the amount of money won or

@@ -19,10 +19,10 @@ def goal_money_betting_even_bet(roulette, goal_money_won, start_bet_amount,
     return money_history
     
 
-def simulate_different_goal_money(betting_type, goal_money_list, number_histories):
+def simulate_different_goal_money(betting_type, goal_money_list, number_histories, start_bet = 1):
     money_histories = defaultdict(lambda: [])
 
     for goal in goal_money_list:
         for _ in range(number_histories):
-            money_histories[goal].append(betting_type(goal))
+            money_histories[goal].append(betting_type(goal,  start_bet))
     return money_histories
