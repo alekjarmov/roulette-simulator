@@ -25,5 +25,4 @@ def simulate_different_goal_money(betting_type, goal_money_list, number_historie
     for goal in goal_money_list:
         for _ in range(number_histories):
             money_histories[goal].append(betting_type(goal))
-    
     return money_histories
