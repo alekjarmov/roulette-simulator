@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt  # type: ignore
-
+import math
 
 def gain_at_some_point(money_history) -> bool:
     # return wether there was a point where the money was greater than the initial money
@@ -30,9 +30,9 @@ def plot_money_history(money_history, title='Money vs Number of Bets', change_co
 
 
 def plot_number_of_bets(money_histories, title='Number of bets until losing all the money'):
-    num_bets = [len(money_history) for money_history in money_histories]
-    plt.hist(num_bets, bins=10)
-    # plt.xlabel('Number of Bets')
+    num_bets = [math.log10(len(money_history)) for money_history in money_histories]
+    plt.hist(num_bets, bins = 100)
+    plt.xlabel('log10')
     plt.ylabel('Number of bets')
     plt.title(title)
     plt.show()
