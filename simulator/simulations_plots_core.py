@@ -29,3 +29,9 @@ def plot_minimum_money(money_histories: dict, goal_money: int):
     ax.yaxis.set_major_formatter(FuncFormatter(format_ticks))
         
     plt.show()
+    
+def plot_successful_bets(money_histories, goal, title='Successful bets'):
+    num_bets = ['Successful' if money_history[-1] >= goal else 'Unsuccessful' for money_history in money_histories]
+    plt.hist(num_bets)
+    plt.title(title)
+    plt.show()
