@@ -5,7 +5,7 @@ def goal_money_betting_even_bet(roulette, goal_money_won, start_bet_amount,
                                 transformation_loss, transformation_win):
     money = 0
     bet_amount = start_bet_amount
-    money_history = []
+    money_history = [money]
     bet_history = []
     while money < goal_money_won:
         prev_money = money 
