@@ -49,12 +49,12 @@ def get_mean_and_std_of_histories(money_histories, goal):
         std_list.append(stdev([l[i] for l in result_list]))
     return mean_list, std_list
 
-def get_maximum_money_won(money_histories, goal):
+def get_mean_money_won(money_histories, goal):
     histories = money_histories[goal]
 
-    return max([h[-1] for h in histories])
+    return mean([h[-1] for h in histories if h[-1]>=goal])
 
-def get_maximum_money_lost(money_histories, goal):
+def get_mean_money_lost(money_histories, goal):
     histories = money_histories[goal]
 
-    return min([h[-1] for h in histories])
+    return mean([h[-1] for h in histories if h[-1]<goal])
