@@ -1,3 +1,4 @@
+from statistics import mean, stdev
 from roulette import Roulette
 from collections import defaultdict
 
@@ -35,3 +36,15 @@ def get_successful_histories(money_histories, goals):
         successful_histories[goal] = [money_history for money_history in money_histories[goal] if money_history[-1] >= goal]
 
     return successful_histories
+
+
+def get_mean_and_std_of_histories(money_histories, goal):
+    max_length = max(len(sublist) for sublist in money_histories[goal])
+    result_list = [sublist + [sublist[-1]] * (max_length - len(sublist)) for sublist in money_histories[goal]]
+
+    mean_list = []
+    std_list = []
+    for i in range(max_length):
+        mean_list.append(mean([l[i] for l in result_list]))
+        std_list.append(stdev([l[i] for l in result_list]))
+    return mean_list, std_list

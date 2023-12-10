@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt  # type: ignore
 import math
 
+import numpy as np
+
 def gain_at_some_point(money_history) -> bool:
     # return wether there was a point where the money was greater than the initial money
     starting_money = money_history[0]
@@ -10,8 +12,13 @@ def gain_at_some_point(money_history) -> bool:
     return False
 
 
-def plot_money_history(money_history, title='Money vs Number of Bets', change_colors=False, minimum_line=False):
+def plot_money_history(money_history, std_dev = None, title='Money vs Number of Bets', change_colors=False, minimum_line=False):
     plt.plot(money_history)
+
+    if std_dev is not None:
+        plt.fill_between(range(len(money_history)), np.array(money_history) - np.array(std_dev), 
+                         np.array(money_history) + np.array(std_dev), color='gray', alpha=0.3, label='Standard Deviation')
+
     plt.xlabel('Number of Bets')
     plt.ylabel('Money')
     plt.title(title)
