@@ -52,9 +52,15 @@ def get_mean_and_std_of_histories(money_histories, goal):
 def get_mean_money_won(money_histories, goal):
     histories = money_histories[goal]
 
-    return mean([h[-1] for h in histories if h[-1]>=goal])
+    check = [h[-1] for h in histories if h[-1]>=goal]
+    if len(check) == 0:
+        return 0
+    return mean(check)
 
 def get_mean_money_lost(money_histories, goal):
     histories = money_histories[goal]
 
-    return mean([h[-1] for h in histories if h[-1]<goal])
+    check = [h[-1] for h in histories if h[-1]<goal]
+    if len(check) == 0:
+        return 0
+    return mean(check)
