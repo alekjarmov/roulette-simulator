@@ -12,7 +12,12 @@ def gain_at_some_point(money_history) -> bool:
     return False
 
 
-def plot_money_history(money_history, std_dev = None, title='Money vs Number of Bets', change_colors=False, minimum_line=False):
+def plot_money_history(money_history, std_dev = None, title='Money vs Number of Bets', change_colors=False, minimum_line=False, maximum_line = False, log_values = False):
+    
+    if log_values:
+        money_history = [-math.log2(abs(v)+1) if v<0 else math.log2(v+1) for v in money_history]
+        std_dev = [math.log2(v+1) for v in std_dev]
+    
     plt.plot(money_history)
 
     if std_dev is not None:
@@ -32,7 +37,10 @@ def plot_money_history(money_history, std_dev = None, title='Money vs Number of 
     if minimum_line:
         plt.axhline(y=min(money_history), color='r', linestyle='-')
         plt.text(0, min(money_history), 'Minimum: ' + str(min(money_history)))
-
+    if maximum_line:
+        plt.axhline(y=max(money_history), color='g', linestyle='-')
+        plt.text(0, max(money_history), 'Maximum: ' + str(max(money_history)) + ' for bet: ' + str(money_history.index(max(money_history))))
+    
     plt.show()
 
 
