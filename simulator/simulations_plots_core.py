@@ -2,15 +2,20 @@ from core import *
 import statistics
 import matplotlib.pyplot as plt  # type: ignore
 from matplotlib.ticker import FuncFormatter
+import math
 
-def plot_money_histories(money_histories: dict, goal_money: int, limit_plots : int = 10):
+def plot_money_histories(money_histories: dict, goal_money: int, limit_plots : int = 10) -> None:
     for money_history in money_histories[goal_money][:limit_plots]:
         plot_money_history(money_history, minimum_line=True)
 
-def plot_minimum_money(money_histories: dict, goal_money: int):
+def plot_minimum_money(money_histories: dict, goal_money: int, log_values: bool = False) -> None:
     minimum_money = []
     for money_history in money_histories[goal_money]:
-        minimum_money.append(min(money_history))
+        res = min(money_history)
+        if log_values:
+            res = math.log2(abs(res)+1)
+            
+        minimum_money.append(res)
 
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.boxplot(minimum_money)
@@ -30,7 +35,7 @@ def plot_minimum_money(money_histories: dict, goal_money: int):
         
     plt.show()
     
-def plot_successful_bets(money_histories, goal, title='Successful bets'):
+def plot_successful_bets(money_histories: list, goal: int, title: str='Successful bets') -> None:
     num_bets = ['Successful' if money_history[-1] >= goal else 'Unsuccessful' for money_history in money_histories]
     plt.hist(num_bets)
     plt.title(title)
