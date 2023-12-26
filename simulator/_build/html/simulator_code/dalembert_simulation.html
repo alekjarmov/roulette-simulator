@@ -1,0 +1,1654 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Starting bet = 1, Allowed money lost = -10 &#8212; Roulette simulator</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/dalembert_simulation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analysis when the goal is to win 10 units" href="fibonacci_roulette_simulation.html" />
+    <link rel="prev" title="Starting bet = 1, Allowed money lost = -35" href="andrucci_simulation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Roulette simulator - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Roulette simulator - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Starting bet = 1, Allowed money lost = -10</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alekjarmov/roulette-simulator" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alekjarmov/roulette-simulator/issues/new?title=Issue%20on%20page%20%2Fsimulator_code/dalembert_simulation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/simulator_code/dalembert_simulation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Starting bet = 1, Allowed money lost = -10</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Starting bet = 1, Allowed money lost = -10</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
+<span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simulations_core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simulations_plots_core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">roulette</span> <span class="o">=</span> <span class="n">Roulette</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformation_on_win</span><span class="p">(</span><span class="n">bet_history</span><span class="p">):</span>
+    <span class="n">next_bet</span> <span class="o">=</span> <span class="n">bet_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">bet_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">bet_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">next_bet</span><span class="p">,</span> <span class="n">bet_history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transformation_on_loss</span><span class="p">(</span><span class="n">bet_history</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bet_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bet_history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dalembert_betting</span><span class="p">(</span><span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">money_limit</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">goal_money_betting_even_bet</span><span class="p">(</span><span class="n">roulette</span><span class="p">,</span> <span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span><span class="p">,</span> <span class="n">transformation_on_loss</span><span class="p">,</span> 
+                                        <span class="n">transformation_on_win</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_goals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-1-allowed-money-lost-10">
+<h1>Starting bet = 1, Allowed money lost = -10<a class="headerlink" href="#starting-bet-1-allowed-money-lost-10" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bet</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">money_histories</span> <span class="o">=</span> <span class="n">simulate_different_goal_money</span><span class="p">(</span>
+                    <span class="n">betting_type</span> <span class="o">=</span> <span class="n">dalembert_betting</span><span class="p">,</span> 
+                    <span class="n">goal_money_list</span> <span class="o">=</span> <span class="n">money_goals</span><span class="p">,</span> 
+                    <span class="n">number_histories</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                    <span class="n">start_bet</span><span class="o">=</span> <span class="n">bet</span><span class="p">,</span>
+                    <span class="n">money_limit</span><span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">bet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successful_histories</span> <span class="o">=</span> <span class="n">get_successful_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">money_goals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money won:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_won</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money lost:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_lost</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
+10.331180270111568
+For goal 10 mean money lost:
+-13.25638928644449
+For goal 100 mean money won:
+101.07080924855491
+For goal 100 mean money lost:
+-14.110764933390632
+For goal 500 mean money won:
+502.56716417910445
+For goal 500 mean money lost:
+-14.604147790194302
+For goal 1000 mean money won:
+1004.5625
+For goal 1000 mean money lost:
+-14.55889423076923
+</pre></div>
+</div>
+</div>
+</div>
+<section id="analysis-when-the-goal-is-to-win-10-units">
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d48a4b9a5ab2ec95ef2cf85373c0188ac60453b677e6308be05e1f5cc4b10afa.png" src="../_images/d48a4b9a5ab2ec95ef2cf85373c0188ac60453b677e6308be05e1f5cc4b10afa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3d75408d69ec72fa5d3984222b62aa6f02387e21a11318f16010404f2425124c.png" src="../_images/3d75408d69ec72fa5d3984222b62aa6f02387e21a11318f16010404f2425124c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21af4538cecd0a1a78fca3f7eafed2f5821c71cb4f34fe5b7bffc593673de2f5.png" src="../_images/21af4538cecd0a1a78fca3f7eafed2f5821c71cb4f34fe5b7bffc593673de2f5.png" />
+<img alt="../_images/0285c8aeb80e81673cd04b09a5bd651be1fd3bf7ea2e87b4a1b487321a043bc5.png" src="../_images/0285c8aeb80e81673cd04b09a5bd651be1fd3bf7ea2e87b4a1b487321a043bc5.png" />
+<img alt="../_images/fc802b237057be4577583c567f251859f229c8848e5380f21575b7e051bbf0b1.png" src="../_images/fc802b237057be4577583c567f251859f229c8848e5380f21575b7e051bbf0b1.png" />
+<img alt="../_images/48d76404d2441ce8a86451cd642caf81fe298b2898879d1ffb7bb4328a5582b0.png" src="../_images/48d76404d2441ce8a86451cd642caf81fe298b2898879d1ffb7bb4328a5582b0.png" />
+<img alt="../_images/d9292f431727285f204e3c13dacaec7e34d460915baf5f68db66c030c3e0c270.png" src="../_images/d9292f431727285f204e3c13dacaec7e34d460915baf5f68db66c030c3e0c270.png" />
+<img alt="../_images/3d9bca6dde2415e9b07ce72a75c79efa0cca39b4684c0cd5c16d6778d5eef747.png" src="../_images/3d9bca6dde2415e9b07ce72a75c79efa0cca39b4684c0cd5c16d6778d5eef747.png" />
+<img alt="../_images/c9eac6831991556fef10ebfe4c06e90f6e6785c82f0fb679392d41a59cfd2bb8.png" src="../_images/c9eac6831991556fef10ebfe4c06e90f6e6785c82f0fb679392d41a59cfd2bb8.png" />
+<img alt="../_images/f178c51f06754a751a791f9d13f7f551da3cba59bb90159f479b50d80346bdb0.png" src="../_images/f178c51f06754a751a791f9d13f7f551da3cba59bb90159f479b50d80346bdb0.png" />
+<img alt="../_images/0bc34b84e4430012cae842c5881124a42cffc14998e1f47d4e605540b47693fd.png" src="../_images/0bc34b84e4430012cae842c5881124a42cffc14998e1f47d4e605540b47693fd.png" />
+<img alt="../_images/61210eab4ea5c57008c5435980f0d9ec1d8100cdcb72f5a3aa120a5a20a676d1.png" src="../_images/61210eab4ea5c57008c5435980f0d9ec1d8100cdcb72f5a3aa120a5a20a676d1.png" />
+</div>
+</div>
+</section>
+<section id="analysis-when-the-goal-is-to-win-100-units">
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5be729c44b30d86150d5d95660e10ea187d66ad30e27fb107156f97d74bd1960.png" src="../_images/5be729c44b30d86150d5d95660e10ea187d66ad30e27fb107156f97d74bd1960.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1e9625a019a1de91d5f74abe83d771e166248dc1db9de363c56c3f3ace73310e.png" src="../_images/1e9625a019a1de91d5f74abe83d771e166248dc1db9de363c56c3f3ace73310e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d564e581487879cd56fcf98e80382499534ff8a40ed7a3dcb86b4557f1a8e4a7.png" src="../_images/d564e581487879cd56fcf98e80382499534ff8a40ed7a3dcb86b4557f1a8e4a7.png" />
+<img alt="../_images/3e0cf02c7a2e15dc4cc1727e3c690de825206c1eb554ccd9160aa96519dbd316.png" src="../_images/3e0cf02c7a2e15dc4cc1727e3c690de825206c1eb554ccd9160aa96519dbd316.png" />
+<img alt="../_images/1e23dbf0e5ec983b7d2a868c99ee26bee3f111d2f1d1e77912e126ffbacd3fce.png" src="../_images/1e23dbf0e5ec983b7d2a868c99ee26bee3f111d2f1d1e77912e126ffbacd3fce.png" />
+<img alt="../_images/e1fb51693e5d420cc6731592197d4aaa497dcc64a11f0a161511f8fc04df653d.png" src="../_images/e1fb51693e5d420cc6731592197d4aaa497dcc64a11f0a161511f8fc04df653d.png" />
+<img alt="../_images/429306c3b122314855a546750acb11708b44df4d5e5d0abb02a0b8ac552863dd.png" src="../_images/429306c3b122314855a546750acb11708b44df4d5e5d0abb02a0b8ac552863dd.png" />
+<img alt="../_images/e93cfb6ae7b949bb56f96e54c762e0af998fd23d3c237942a1d005ec5edfa9d9.png" src="../_images/e93cfb6ae7b949bb56f96e54c762e0af998fd23d3c237942a1d005ec5edfa9d9.png" />
+<img alt="../_images/e95d1625bbadf4ca9f7f1a3ea3fcea1ce076f854697cb36b0718cce0690c7456.png" src="../_images/e95d1625bbadf4ca9f7f1a3ea3fcea1ce076f854697cb36b0718cce0690c7456.png" />
+<img alt="../_images/5d5e58da56a3d35a0a95efb9618c5d87a88ff0852e8c9fd8e427c223ca0472c0.png" src="../_images/5d5e58da56a3d35a0a95efb9618c5d87a88ff0852e8c9fd8e427c223ca0472c0.png" />
+<img alt="../_images/10d99e3085aa466dd7cc0a5f1854e69012b0291be14d0fa2f05616bda9081f48.png" src="../_images/10d99e3085aa466dd7cc0a5f1854e69012b0291be14d0fa2f05616bda9081f48.png" />
+<img alt="../_images/14224be0d851d7b4f7e6c1dac7011fd9d289a25e9bee300149b8d5667b7a23e7.png" src="../_images/14224be0d851d7b4f7e6c1dac7011fd9d289a25e9bee300149b8d5667b7a23e7.png" />
+</div>
+</div>
+</section>
+<section id="analysis-when-the-goal-is-to-win-500-units">
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a7f58a16e3b7f700caf64d9fa67bb49e66f5000f11baeb735e0023d937b67796.png" src="../_images/a7f58a16e3b7f700caf64d9fa67bb49e66f5000f11baeb735e0023d937b67796.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/07f569b3340b69270835a31b2245631cdfa348a3e3a4c4b9516717df0312db7a.png" src="../_images/07f569b3340b69270835a31b2245631cdfa348a3e3a4c4b9516717df0312db7a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1fa399ebb91470f8dfc4786cfef6bef2190ae996c169385be0f0db8908226cba.png" src="../_images/1fa399ebb91470f8dfc4786cfef6bef2190ae996c169385be0f0db8908226cba.png" />
+<img alt="../_images/b0c4bb9f77817af32b34e29f1b43f33e17703d7ae0097d9a83f6f33ab18b305e.png" src="../_images/b0c4bb9f77817af32b34e29f1b43f33e17703d7ae0097d9a83f6f33ab18b305e.png" />
+<img alt="../_images/096764235c9ac3d0b6599779ea69ffcd306664e852956bbfb86f0b2317faffe3.png" src="../_images/096764235c9ac3d0b6599779ea69ffcd306664e852956bbfb86f0b2317faffe3.png" />
+<img alt="../_images/b0f0f7c4d360c2a92965061fcea2dfdb9ac213ab53c301b227d3548aa41b4828.png" src="../_images/b0f0f7c4d360c2a92965061fcea2dfdb9ac213ab53c301b227d3548aa41b4828.png" />
+<img alt="../_images/130240be68b2d24cef7d149dde20a5df2838622f4c1f6d1ee0f356d50b784734.png" src="../_images/130240be68b2d24cef7d149dde20a5df2838622f4c1f6d1ee0f356d50b784734.png" />
+<img alt="../_images/698f1efb04b4aca1e54f4fd7f40a590a06b083316ce36e69dd15c31a049c20a5.png" src="../_images/698f1efb04b4aca1e54f4fd7f40a590a06b083316ce36e69dd15c31a049c20a5.png" />
+<img alt="../_images/73f2e9d073a125d71f0b7dcf9ef0d7f5b9e6427f81f594758705522dd9c04201.png" src="../_images/73f2e9d073a125d71f0b7dcf9ef0d7f5b9e6427f81f594758705522dd9c04201.png" />
+<img alt="../_images/146643823732d17ee935c9cfd469c68db0b21e73e0a2b9e16df2f1ee2df03a43.png" src="../_images/146643823732d17ee935c9cfd469c68db0b21e73e0a2b9e16df2f1ee2df03a43.png" />
+<img alt="../_images/3d2589fc49c68e482844917285ca920a85a519aac4592693203442a1d5d71a3c.png" src="../_images/3d2589fc49c68e482844917285ca920a85a519aac4592693203442a1d5d71a3c.png" />
+<img alt="../_images/33933305add10330e997c706cd73b2009651f002cee23bff4afa54acd3c2fab7.png" src="../_images/33933305add10330e997c706cd73b2009651f002cee23bff4afa54acd3c2fab7.png" />
+</div>
+</div>
+</section>
+<section id="analysis-when-the-goal-is-to-win-1000-units">
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b1b8d436ddb262028539d3a9ff3b096e3deb4bfc6e53a7d1c0d69a650ae87d06.png" src="../_images/b1b8d436ddb262028539d3a9ff3b096e3deb4bfc6e53a7d1c0d69a650ae87d06.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9d2ca8b9b28981c8f62a156d14ed65facfe459f90569d84d9e88124ac0742a78.png" src="../_images/9d2ca8b9b28981c8f62a156d14ed65facfe459f90569d84d9e88124ac0742a78.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8accdca9b06ec0bcb6bd7f9e5d96e8d7a1006669b433850936f6019590874452.png" src="../_images/8accdca9b06ec0bcb6bd7f9e5d96e8d7a1006669b433850936f6019590874452.png" />
+<img alt="../_images/156ab66a48409a441489ed010f9a0570bb56d57d4fad669ade354246b27eb44f.png" src="../_images/156ab66a48409a441489ed010f9a0570bb56d57d4fad669ade354246b27eb44f.png" />
+<img alt="../_images/4b7258d7879b057401c5b86a09e8e7350b6fa9a348e9cd601e68c8bc6f3f4c9c.png" src="../_images/4b7258d7879b057401c5b86a09e8e7350b6fa9a348e9cd601e68c8bc6f3f4c9c.png" />
+<img alt="../_images/69de5d0cacebcb8f4f211759bb6e41a71ae52d2b3a0285f0370591a49a4ccec7.png" src="../_images/69de5d0cacebcb8f4f211759bb6e41a71ae52d2b3a0285f0370591a49a4ccec7.png" />
+<img alt="../_images/4666c2e1c649e25ea135b929395a9c56c24103c1282d636be70d0facb967a9ae.png" src="../_images/4666c2e1c649e25ea135b929395a9c56c24103c1282d636be70d0facb967a9ae.png" />
+<img alt="../_images/8d18465470a52ad922b65a21e4117ee40ca4d34cc19c7dcb04a746c19c9f45d6.png" src="../_images/8d18465470a52ad922b65a21e4117ee40ca4d34cc19c7dcb04a746c19c9f45d6.png" />
+<img alt="../_images/b9211defd81e6767e5b9031f309d6f94d154ac9e922886f34ae446ccacd8436f.png" src="../_images/b9211defd81e6767e5b9031f309d6f94d154ac9e922886f34ae446ccacd8436f.png" />
+<img alt="../_images/37dcd687c6612171642a2ad46b11a23e0073579dee3a55d2887b8b6313c51724.png" src="../_images/37dcd687c6612171642a2ad46b11a23e0073579dee3a55d2887b8b6313c51724.png" />
+<img alt="../_images/49e2407a3f37d4332520497ef42bbe7c3d6e31c87da041acd07c5b6e1483b177.png" src="../_images/49e2407a3f37d4332520497ef42bbe7c3d6e31c87da041acd07c5b6e1483b177.png" />
+<img alt="../_images/9ef305e7fa6e3c70a66538d039dbf0a04bf9d2a52d5adf8513a774b4812bbfc3.png" src="../_images/9ef305e7fa6e3c70a66538d039dbf0a04bf9d2a52d5adf8513a774b4812bbfc3.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-10-goal">
+<h1>Starting bet = goal, Allowed money lost = -10*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-10-goal" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="n">bet</span> <span class="o">=</span> <span class="n">goal</span>
+    <span class="n">tmp_money_histories</span> <span class="o">=</span> <span class="n">simulate_different_goal_money</span><span class="p">(</span>
+                        <span class="n">betting_type</span> <span class="o">=</span> <span class="n">dalembert_betting</span><span class="p">,</span> 
+                        <span class="n">goal_money_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">goal</span><span class="p">],</span> 
+                        <span class="n">number_histories</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                        <span class="n">start_bet</span><span class="o">=</span> <span class="n">bet</span><span class="p">,</span>
+                        <span class="n">money_limit</span><span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">bet</span><span class="p">)</span>
+    <span class="n">money_histories</span> <span class="o">=</span> <span class="n">money_histories</span> <span class="o">|</span> <span class="n">tmp_money_histories</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successful_histories</span> <span class="o">=</span> <span class="n">get_successful_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">money_goals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money won:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_won</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money lost:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_lost</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
+11.286022482116499
+For goal 10 mean money lost:
+-107.2254819782062
+For goal 100 mean money won:
+103.05069333939532
+For goal 100 mean money lost:
+-1033.4084858569051
+For goal 500 mean money won:
+503.06990467544256
+For goal 500 mean money lost:
+-5049.276936026936
+For goal 1000 mean money won:
+1002.8544797198057
+For goal 1000 mean money lost:
+-10057.375979112272
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f7374992fe85f2939a4ea346eb30250341726c143adf042831c0904d3da29b8f.png" src="../_images/f7374992fe85f2939a4ea346eb30250341726c143adf042831c0904d3da29b8f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b15b929790f8e4d48a92b1a0db81c348fccbc798e6d1ce9b3b0108d7ac06a976.png" src="../_images/b15b929790f8e4d48a92b1a0db81c348fccbc798e6d1ce9b3b0108d7ac06a976.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee971dc132b0da3337844dc1f3c484067f08a3232762bfe315f5d156c9000dc1.png" src="../_images/ee971dc132b0da3337844dc1f3c484067f08a3232762bfe315f5d156c9000dc1.png" />
+<img alt="../_images/693eb2f78870cb55a313d8758e6e8919327ca3dd8e79506df94cbfcfc79540ab.png" src="../_images/693eb2f78870cb55a313d8758e6e8919327ca3dd8e79506df94cbfcfc79540ab.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/6be3c9ea94f1b4a4ece73b0a1b371348cb7b4b1ef6d37170d124417bcafd6d34.png" src="../_images/6be3c9ea94f1b4a4ece73b0a1b371348cb7b4b1ef6d37170d124417bcafd6d34.png" />
+<img alt="../_images/e1dce7ec59b5d7a963da21011f77cd3db4f7b656a90f89a79e80367d4bfc4234.png" src="../_images/e1dce7ec59b5d7a963da21011f77cd3db4f7b656a90f89a79e80367d4bfc4234.png" />
+<img alt="../_images/382affcc9984529a62b32f60af119d997fa0a1a838f96c5bd135ad7bcf16fc69.png" src="../_images/382affcc9984529a62b32f60af119d997fa0a1a838f96c5bd135ad7bcf16fc69.png" />
+<img alt="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" src="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" />
+<img alt="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" src="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" />
+<img alt="../_images/693eb2f78870cb55a313d8758e6e8919327ca3dd8e79506df94cbfcfc79540ab.png" src="../_images/693eb2f78870cb55a313d8758e6e8919327ca3dd8e79506df94cbfcfc79540ab.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/242cca7ef05833e457f042207ba39abbd39e697db0881a27eeb47bba5d9ec9cb.png" src="../_images/242cca7ef05833e457f042207ba39abbd39e697db0881a27eeb47bba5d9ec9cb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3bb0b68c03e38a69f06789621ea75aa89ebc9d064b3a63a5129a08eb3188bf54.png" src="../_images/3bb0b68c03e38a69f06789621ea75aa89ebc9d064b3a63a5129a08eb3188bf54.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/82b6ad3e7286cb8250d0aee5901d87e081ce3b0cf1d2cfdc32a3d4b864914a12.png" src="../_images/82b6ad3e7286cb8250d0aee5901d87e081ce3b0cf1d2cfdc32a3d4b864914a12.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" src="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/56cecce1ea111d03e2a8fa57757d886ae684ebae7d13d447c27fa4e574275102.png" src="../_images/56cecce1ea111d03e2a8fa57757d886ae684ebae7d13d447c27fa4e574275102.png" />
+<img alt="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" src="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/feea9641f470370f8d0d4dad8c8698eb416a0d466742a0c31966d83ba3fccda5.png" src="../_images/feea9641f470370f8d0d4dad8c8698eb416a0d466742a0c31966d83ba3fccda5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/18cee780c7ce57c32226a246edd2343b5b5fa3799c3bfd35bdc9a075c4348a94.png" src="../_images/18cee780c7ce57c32226a246edd2343b5b5fa3799c3bfd35bdc9a075c4348a94.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" src="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/7ae7bb95479ba8f68f2fa28f76a0ba449b4af2fa072dcc921abbac98cab4f772.png" src="../_images/7ae7bb95479ba8f68f2fa28f76a0ba449b4af2fa072dcc921abbac98cab4f772.png" />
+<img alt="../_images/2093f1fe2f7ee06e850d805d178d1b3e4357686a912507cce7002552e75d080c.png" src="../_images/2093f1fe2f7ee06e850d805d178d1b3e4357686a912507cce7002552e75d080c.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/37b006d5a73855d1da55913d25c9c19d16afff138fe00445251fca87c7073f87.png" src="../_images/37b006d5a73855d1da55913d25c9c19d16afff138fe00445251fca87c7073f87.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a2dd654183eb88788aafd37eeb75fe87a40283283bbeb18787079ee285abb8f2.png" src="../_images/a2dd654183eb88788aafd37eeb75fe87a40283283bbeb18787079ee285abb8f2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4722b6ba4335b00bb1a0ee6f1acad16390c5f41bcdf8ce41b0ad47ec5a9e458e.png" src="../_images/4722b6ba4335b00bb1a0ee6f1acad16390c5f41bcdf8ce41b0ad47ec5a9e458e.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/efbd6c33dbaeac8fe19f0ad05d3b5f7df11eca19506323a80b890ce3aa5ff581.png" src="../_images/efbd6c33dbaeac8fe19f0ad05d3b5f7df11eca19506323a80b890ce3aa5ff581.png" />
+<img alt="../_images/f1080199a0178b80cdc9143962fd1d7f95d627deb39c802a91a8d23fcc6ede63.png" src="../_images/f1080199a0178b80cdc9143962fd1d7f95d627deb39c802a91a8d23fcc6ede63.png" />
+<img alt="../_images/ebe4cc9dcbb7f09c7d39625bdf309657aad29ba834a8487fce33abd6d25572a5.png" src="../_images/ebe4cc9dcbb7f09c7d39625bdf309657aad29ba834a8487fce33abd6d25572a5.png" />
+<img alt="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" src="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-20-goal">
+<h1>Starting bet = goal, Allowed money lost = -20*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-20-goal" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="n">bet</span> <span class="o">=</span> <span class="n">goal</span>
+    <span class="n">tmp_money_histories</span> <span class="o">=</span> <span class="n">simulate_different_goal_money</span><span class="p">(</span>
+                        <span class="n">betting_type</span> <span class="o">=</span> <span class="n">dalembert_betting</span><span class="p">,</span> 
+                        <span class="n">goal_money_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">goal</span><span class="p">],</span> 
+                        <span class="n">number_histories</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                        <span class="n">start_bet</span><span class="o">=</span> <span class="n">bet</span><span class="p">,</span>
+                        <span class="n">money_limit</span><span class="o">=</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">bet</span><span class="p">)</span>
+    <span class="n">money_histories</span> <span class="o">=</span> <span class="n">money_histories</span> <span class="o">|</span> <span class="n">tmp_money_histories</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successful_histories</span> <span class="o">=</span> <span class="n">get_successful_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">money_goals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money won:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_won</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money lost:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_lost</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
+11.533319002579535
+For goal 10 mean money lost:
+-211.76436781609195
+For goal 100 mean money won:
+105.05022285030982
+For goal 100 mean money lost:
+-2045.421972534332
+For goal 500 mean money won:
+505.9231768015581
+For goal 500 mean money lost:
+-10140.692612137203
+For goal 1000 mean money won:
+1006.1056452486727
+For goal 1000 mean money lost:
+-20155.208819714655
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/59cd25b016b57b948240a4fc9154b16ba1dbd8cef161b16b0f0a113e6e9aecaa.png" src="../_images/59cd25b016b57b948240a4fc9154b16ba1dbd8cef161b16b0f0a113e6e9aecaa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e037f8032fbe8f94c144251a3ea4d32620270eef1d37f4afd22181aac470a46e.png" src="../_images/e037f8032fbe8f94c144251a3ea4d32620270eef1d37f4afd22181aac470a46e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" src="../_images/7ccbef3f2c0ac7dfcbdc7cff633ecdc1ed85b0139c51a137c93e33a8c5848e93.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/03230662339f80958ec55f6c0ca47d89b2eb4fb211778942b80bbe93c4229b5c.png" src="../_images/03230662339f80958ec55f6c0ca47d89b2eb4fb211778942b80bbe93c4229b5c.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/1af938a00071e3f2fe66dbd9d056c90ef4720fdbaac4b166eb8f3f8306904110.png" src="../_images/1af938a00071e3f2fe66dbd9d056c90ef4720fdbaac4b166eb8f3f8306904110.png" />
+<img alt="../_images/9ba447ba0f2adad394037357e21890c14c8958604e1a7c1ab2fe09824cc414a7.png" src="../_images/9ba447ba0f2adad394037357e21890c14c8958604e1a7c1ab2fe09824cc414a7.png" />
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/595aff4ed9ed0c0cefff2661719baa64db20e14db751a82176517b16a5e12856.png" src="../_images/595aff4ed9ed0c0cefff2661719baa64db20e14db751a82176517b16a5e12856.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1ad41bdc5dfe59b44660313b3613be85ce1a825ca05953ac699905310f8dee73.png" src="../_images/1ad41bdc5dfe59b44660313b3613be85ce1a825ca05953ac699905310f8dee73.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" src="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" />
+<img alt="../_images/2b94699f8a44f733c68f1b5f7c95181528d344351f68f3a7b1ff99958c3696b9.png" src="../_images/2b94699f8a44f733c68f1b5f7c95181528d344351f68f3a7b1ff99958c3696b9.png" />
+<img alt="../_images/469e2c55aef16fb99518ba991dd3dfbb5708408bcde9648df03f5a3cf42b0bd3.png" src="../_images/469e2c55aef16fb99518ba991dd3dfbb5708408bcde9648df03f5a3cf42b0bd3.png" />
+<img alt="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" src="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/56cecce1ea111d03e2a8fa57757d886ae684ebae7d13d447c27fa4e574275102.png" src="../_images/56cecce1ea111d03e2a8fa57757d886ae684ebae7d13d447c27fa4e574275102.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/9ecf73f4795629d6f17f441338f76c365f42de724bbf6b4386533da966172bd0.png" src="../_images/9ecf73f4795629d6f17f441338f76c365f42de724bbf6b4386533da966172bd0.png" />
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/52f881b7d10a94909c118645146a1c57ce4f6b3d74f2078e650036101566db0c.png" src="../_images/52f881b7d10a94909c118645146a1c57ce4f6b3d74f2078e650036101566db0c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c68dbc782581e411de030d806038af10e235c41d919679f20db43ef51713dbbf.png" src="../_images/c68dbc782581e411de030d806038af10e235c41d919679f20db43ef51713dbbf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f05fe6a095f40e68fff2b306926624fd140c81ffa2b08ba24236424fd015c6c0.png" src="../_images/f05fe6a095f40e68fff2b306926624fd140c81ffa2b08ba24236424fd015c6c0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c1229b47c0da4e620499d951bc94362df11db4c09e991691d1ac4a2bcaf90034.png" src="../_images/c1229b47c0da4e620499d951bc94362df11db4c09e991691d1ac4a2bcaf90034.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b224a0afc85ceda86e917c6b4f28a38587dde0d8d0dc80774ded2b07ee5f64a.png" src="../_images/9b224a0afc85ceda86e917c6b4f28a38587dde0d8d0dc80774ded2b07ee5f64a.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" src="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" />
+<img alt="../_images/9b224a0afc85ceda86e917c6b4f28a38587dde0d8d0dc80774ded2b07ee5f64a.png" src="../_images/9b224a0afc85ceda86e917c6b4f28a38587dde0d8d0dc80774ded2b07ee5f64a.png" />
+<img alt="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" src="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" />
+<img alt="../_images/9cb5218ed7b7dffa3203a4b95f1baab210b18737ac72d6ab50111c07de2f259f.png" src="../_images/9cb5218ed7b7dffa3203a4b95f1baab210b18737ac72d6ab50111c07de2f259f.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" src="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/ebe4cc9dcbb7f09c7d39625bdf309657aad29ba834a8487fce33abd6d25572a5.png" src="../_images/ebe4cc9dcbb7f09c7d39625bdf309657aad29ba834a8487fce33abd6d25572a5.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-30-goal">
+<h1>Starting bet = goal, Allowed money lost = -30*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-30-goal" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="n">bet</span> <span class="o">=</span> <span class="n">goal</span>
+    <span class="n">tmp_money_histories</span> <span class="o">=</span> <span class="n">simulate_different_goal_money</span><span class="p">(</span>
+                        <span class="n">betting_type</span> <span class="o">=</span> <span class="n">dalembert_betting</span><span class="p">,</span> 
+                        <span class="n">goal_money_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">goal</span><span class="p">],</span> 
+                        <span class="n">number_histories</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                        <span class="n">start_bet</span><span class="o">=</span> <span class="n">bet</span><span class="p">,</span>
+                        <span class="n">money_limit</span><span class="o">=</span> <span class="o">-</span><span class="mi">30</span><span class="o">*</span><span class="n">bet</span><span class="p">)</span>
+    <span class="n">money_histories</span> <span class="o">=</span> <span class="n">money_histories</span> <span class="o">|</span> <span class="n">tmp_money_histories</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successful_histories</span> <span class="o">=</span> <span class="n">get_successful_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">money_goals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">money_goals</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money won:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_won</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For goal </span><span class="si">{</span><span class="n">goal</span><span class="si">}</span><span class="s2"> mean money lost:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_mean_money_lost</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">goal</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
+11.583465818759937
+For goal 10 mean money lost:
+-314.624778761062
+For goal 100 mean money won:
+105.64238551650692
+For goal 100 mean money lost:
+-3065.4836065573772
+For goal 500 mean money won:
+509.19222969367064
+For goal 500 mean money lost:
+-15305.729001584787
+For goal 1000 mean money won:
+1008.4850682593857
+For goal 1000 mean money lost:
+-30319.1266025641
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id9">
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c4f137cede6b4a1345928ffbfb50706d083bc88f0b7b6217eb9133ed4eaf062e.png" src="../_images/c4f137cede6b4a1345928ffbfb50706d083bc88f0b7b6217eb9133ed4eaf062e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1dd4eefa0eae590ab49207dc9e5368cd8cb23788830d094e5aeb16d7e7ddc649.png" src="../_images/1dd4eefa0eae590ab49207dc9e5368cd8cb23788830d094e5aeb16d7e7ddc649.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/ae6b08c8a9c9f1a53fb67c29311b77ff8e787803e90625c99ea52a0d6a6232da.png" src="../_images/ae6b08c8a9c9f1a53fb67c29311b77ff8e787803e90625c99ea52a0d6a6232da.png" />
+<img alt="../_images/d5e76362a73c0e15329f40c2fca014946ba533beeb1bfdcd12f00c5cb0901913.png" src="../_images/d5e76362a73c0e15329f40c2fca014946ba533beeb1bfdcd12f00c5cb0901913.png" />
+<img alt="../_images/ab11c6938ee8b4fd23738dd08e49ec77b21fdb990491a0c780dd4f3e2c270ac8.png" src="../_images/ab11c6938ee8b4fd23738dd08e49ec77b21fdb990491a0c780dd4f3e2c270ac8.png" />
+<img alt="../_images/8b32d767d173d2c6880a8cadc0d7a1e0e6adda92e87afc27ce2a864ee02d9659.png" src="../_images/8b32d767d173d2c6880a8cadc0d7a1e0e6adda92e87afc27ce2a864ee02d9659.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1a218a86790d2d1b8753fc45d6b3e7333f1400c0c46cc433262a3dce327101b4.png" src="../_images/1a218a86790d2d1b8753fc45d6b3e7333f1400c0c46cc433262a3dce327101b4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1ffe97625330878a3b250c3242469f8829e9fbd2315cce9295ab7628f6633105.png" src="../_images/1ffe97625330878a3b250c3242469f8829e9fbd2315cce9295ab7628f6633105.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/24bc1c8f3021cd8fb0d330fd36f1d9e7803020205522102c51aa884166378cf0.png" src="../_images/24bc1c8f3021cd8fb0d330fd36f1d9e7803020205522102c51aa884166378cf0.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" src="../_images/d53dac67b1878324f91bacaa17a5f2270013926710c729d762a89beb033a0031.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+</div>
+</div>
+</section>
+<section id="id11">
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c50339c0412d7b6af18b86681061f2ac80bdf15cd4cb3a633a66cce1bb2ad87d.png" src="../_images/c50339c0412d7b6af18b86681061f2ac80bdf15cd4cb3a633a66cce1bb2ad87d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14f05d64c1e758e606129296dc99c7f52079e97b8fa8d9c89a7999b52ab69245.png" src="../_images/14f05d64c1e758e606129296dc99c7f52079e97b8fa8d9c89a7999b52ab69245.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" src="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/1303543c2d5bd42c2fece97a9ec77dd42f580b255fb60491fe07afb83fd537e3.png" src="../_images/1303543c2d5bd42c2fece97a9ec77dd42f580b255fb60491fe07afb83fd537e3.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" src="../_images/68c8b72632697c36f7d803c4509062e489c6fa66fd8d099eb81f17380605f0b0.png" />
+<img alt="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" src="../_images/97f8ed73e067b84da9f9605f50a1de2fa0225a09c003c1a37244e6ca404ef2b2.png" />
+<img alt="../_images/a3efa1d51441ab20ebd28ac5a21b39ffb9c62e70c37fbfcc965f6f7ab31a61a6.png" src="../_images/a3efa1d51441ab20ebd28ac5a21b39ffb9c62e70c37fbfcc965f6f7ab31a61a6.png" />
+</div>
+</div>
+</section>
+<section id="id12">
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Successful bets for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a97c9a20873d5e48edbcc5a5f924861b8e8c8880c018a464d0c21944191b26b4.png" src="../_images/a97c9a20873d5e48edbcc5a5f924861b8e8c8880c018a464d0c21944191b26b4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/379d58ae7b4591545aa6ae5130e527e733202c8f273b6bd365097394a0de24e2.png" src="../_images/379d58ae7b4591545aa6ae5130e527e733202c8f273b6bd365097394a0de24e2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" src="../_images/02facf609259ee612c5498848619ef92242691549c77cb3ebc1c39389aa86914.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./simulator_code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="andrucci_simulation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Starting bet = 1, Allowed money lost = -35</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="fibonacci_roulette_simulation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analysis when the goal is to win 10 units</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Starting bet = 1, Allowed money lost = -10</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Marija Atanasovska & Alek Jarmov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
