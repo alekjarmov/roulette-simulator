@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Analysis when the goal is to win 10 units &#8212; Roulette simulator</title>
+    <title>Martingale simulation &#8212; Roulette simulator</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/martingale_simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Starting bet = 1, Allowed money lost = -10" href="paroli_simulation.html" />
-    <link rel="prev" title="Analysis when the goal is to win 10 units" href="labouchere_simulation.html" />
+    <link rel="next" title="Paroli simulation" href="paroli_simulation.html" />
+    <link rel="prev" title="Labouchere simulation" href="labouchere_simulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -385,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analysis when the goal is to win 10 units</h1>
+    <h1>Martingale simulation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,12 +375,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -411,7 +390,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="martingale-simulation">
+<h1>Martingale simulation<a class="headerlink" href="#martingale-simulation" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -422,6 +403,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The Martingale system is a betting strategy based on recovering your losses. The idea is that with every losing roulette spin, you double your wager. In theory, this means that if you eventually win again, you’ll recover any previous losses plus gain a small profit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">martingale_betting</span><span class="p">(</span><span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">):</span>
@@ -444,7 +426,7 @@ document.write(`
 </div>
 </div>
 <section id="analysis-when-the-goal-is-to-win-10-units">
-<h1>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -453,7 +435,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a481f452aa206e21bac7fd22c6e1e1dcdfb549140872d7ea9277b84bf47bf1b4.png" src="../_images/a481f452aa206e21bac7fd22c6e1e1dcdfb549140872d7ea9277b84bf47bf1b4.png" />
+<img alt="../_images/f40216bb8d97bc507b439043ada6161dcf9c59032ad575ccf89b1705e25f1a6a.png" src="../_images/f40216bb8d97bc507b439043ada6161dcf9c59032ad575ccf89b1705e25f1a6a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -463,16 +445,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f1418327875b1541ce88914c8ba6902341fd6a4e55eacb4e05835de58dbb5a96.png" src="../_images/f1418327875b1541ce88914c8ba6902341fd6a4e55eacb4e05835de58dbb5a96.png" />
-<img alt="../_images/7152b58d18a2f740b7c47c9c7007fc348cc6dcaff39a373282e7a35360157dd1.png" src="../_images/7152b58d18a2f740b7c47c9c7007fc348cc6dcaff39a373282e7a35360157dd1.png" />
-<img alt="../_images/8ced43cc1249e904338e51f51e40b352ba1027a632001d2b724e07f30be8d656.png" src="../_images/8ced43cc1249e904338e51f51e40b352ba1027a632001d2b724e07f30be8d656.png" />
-<img alt="../_images/131a36de309fd6558b7c32ce3bfb12dc8ab07f5d5807c4a1e21d2dcd27d0e3ae.png" src="../_images/131a36de309fd6558b7c32ce3bfb12dc8ab07f5d5807c4a1e21d2dcd27d0e3ae.png" />
-<img alt="../_images/c2a33338683c90f529ca1b7a45597e6a18b0cdcb99fc428d971f80fdb1bbe504.png" src="../_images/c2a33338683c90f529ca1b7a45597e6a18b0cdcb99fc428d971f80fdb1bbe504.png" />
-<img alt="../_images/9549b2635997dc8daae28000346236dd19cdf2448d149522ec825389e745fbd2.png" src="../_images/9549b2635997dc8daae28000346236dd19cdf2448d149522ec825389e745fbd2.png" />
-<img alt="../_images/d88f1290c4897e978018999f6b939f76bea9e02009e5dba60597c3c8936c091c.png" src="../_images/d88f1290c4897e978018999f6b939f76bea9e02009e5dba60597c3c8936c091c.png" />
-<img alt="../_images/22f7190e8c3b065cd047fd2ad0275b31ff0424a66cc43a58e3d95fd50329b96d.png" src="../_images/22f7190e8c3b065cd047fd2ad0275b31ff0424a66cc43a58e3d95fd50329b96d.png" />
-<img alt="../_images/b64902398395c25c76c279c664c869fc7bb964b4ec8662cfcf3d75000562a216.png" src="../_images/b64902398395c25c76c279c664c869fc7bb964b4ec8662cfcf3d75000562a216.png" />
-<img alt="../_images/4ce34fe76c2f3c0d99d2dedc46bffd42dd0ea2431d5345fc5a1284a9bc0c828f.png" src="../_images/4ce34fe76c2f3c0d99d2dedc46bffd42dd0ea2431d5345fc5a1284a9bc0c828f.png" />
+<img alt="../_images/912cbac6f09cf19fdc12659097e9a182c45b4fdeda1f69d1021fa88df0144dc3.png" src="../_images/912cbac6f09cf19fdc12659097e9a182c45b4fdeda1f69d1021fa88df0144dc3.png" />
+<img alt="../_images/399d7bacc9a74d310c0b8d44a3c7360172980dfbdcd7c4c6b06500035df3e6c0.png" src="../_images/399d7bacc9a74d310c0b8d44a3c7360172980dfbdcd7c4c6b06500035df3e6c0.png" />
+<img alt="../_images/279db7d9180c3cfecd545640a46b870b01aee64185baec5627bcce2e29ffa590.png" src="../_images/279db7d9180c3cfecd545640a46b870b01aee64185baec5627bcce2e29ffa590.png" />
+<img alt="../_images/2435d0e198f8f8926d78b2c91623d6471677ccaae3da913ea8f58167893ed506.png" src="../_images/2435d0e198f8f8926d78b2c91623d6471677ccaae3da913ea8f58167893ed506.png" />
+<img alt="../_images/b8624092dc4f63f32e30c20bb34e45ccc436976ebcf98c27bb2efd068af65df1.png" src="../_images/b8624092dc4f63f32e30c20bb34e45ccc436976ebcf98c27bb2efd068af65df1.png" />
+<img alt="../_images/17894cb5bd81d9b63d7275f465dedcb71c004c82bbf8657d7e735c7249e82a51.png" src="../_images/17894cb5bd81d9b63d7275f465dedcb71c004c82bbf8657d7e735c7249e82a51.png" />
+<img alt="../_images/162647bc8e66542183aa2e9fbe5b8e3a79918fecada5c637faf6e025e4f3700d.png" src="../_images/162647bc8e66542183aa2e9fbe5b8e3a79918fecada5c637faf6e025e4f3700d.png" />
+<img alt="../_images/6494a245c8bd788a993e31b0fddc08135858d9267a998ffca9acc1f8a61fae45.png" src="../_images/6494a245c8bd788a993e31b0fddc08135858d9267a998ffca9acc1f8a61fae45.png" />
+<img alt="../_images/e6ba7d94ac529d44fed7d39209959b8c9584a00beb7bcad3a9122d678405f290.png" src="../_images/e6ba7d94ac529d44fed7d39209959b8c9584a00beb7bcad3a9122d678405f290.png" />
+<img alt="../_images/fd20876668e864ea2e68b3c8b23fe3b099f4d7f492e957b3272ce337ad68683e.png" src="../_images/fd20876668e864ea2e68b3c8b23fe3b099f4d7f492e957b3272ce337ad68683e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -482,12 +464,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d03b18eb1ccac8db95866923467d57c937664abedfd7e2cbe5d0412a3d34c0e6.png" src="../_images/d03b18eb1ccac8db95866923467d57c937664abedfd7e2cbe5d0412a3d34c0e6.png" />
+<img alt="../_images/379bf02cfd91438fb0751374d5cd36ee94fc099e43672b81013b014dd5ad961e.png" src="../_images/379bf02cfd91438fb0751374d5cd36ee94fc099e43672b81013b014dd5ad961e.png" />
 </div>
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-100-units">
-<h1>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -496,7 +478,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b4df6d28cf0c6c25058023c204ca427476315300898bc82a8dc79f145e10e406.png" src="../_images/b4df6d28cf0c6c25058023c204ca427476315300898bc82a8dc79f145e10e406.png" />
+<img alt="../_images/d721cfb212114631879f46ce5b6813c2031891a699aff6046998ade6dab7ca6d.png" src="../_images/d721cfb212114631879f46ce5b6813c2031891a699aff6046998ade6dab7ca6d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -506,16 +488,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ba64be9c84b9dc9c0ba5d5191cbd4af3b1a52c55560becd8edbeaacceca32d3f.png" src="../_images/ba64be9c84b9dc9c0ba5d5191cbd4af3b1a52c55560becd8edbeaacceca32d3f.png" />
-<img alt="../_images/2005ae347ead289fe0eb4a99425c207d69c5375b962d3799139b3d56bf28dd01.png" src="../_images/2005ae347ead289fe0eb4a99425c207d69c5375b962d3799139b3d56bf28dd01.png" />
-<img alt="../_images/15d40fc4b24138ea10ac44d09e6741b0c32737e4bb57fca90fd243bab1d585ae.png" src="../_images/15d40fc4b24138ea10ac44d09e6741b0c32737e4bb57fca90fd243bab1d585ae.png" />
-<img alt="../_images/363214209d23d242d7988a4618d7cd9ad4430b6f32456efadcce60383c8b08f6.png" src="../_images/363214209d23d242d7988a4618d7cd9ad4430b6f32456efadcce60383c8b08f6.png" />
-<img alt="../_images/5615430f2d7d3432f0adba253b5aafe855218b0e1849c6908723ae0b529ade6f.png" src="../_images/5615430f2d7d3432f0adba253b5aafe855218b0e1849c6908723ae0b529ade6f.png" />
-<img alt="../_images/06f230dcae2ac78d2e4d62973ff7a0b20a44d52e3c3bfa689b4697ad56ca7da7.png" src="../_images/06f230dcae2ac78d2e4d62973ff7a0b20a44d52e3c3bfa689b4697ad56ca7da7.png" />
-<img alt="../_images/21164764edb7abf470b22aef81d0d8586974378df34a1033c6299ecefd4dcb2b.png" src="../_images/21164764edb7abf470b22aef81d0d8586974378df34a1033c6299ecefd4dcb2b.png" />
-<img alt="../_images/932f616f7b9ea8c1dfc2d7c4b6c3deabc8991c64a561be52aa2b8e74d953a25f.png" src="../_images/932f616f7b9ea8c1dfc2d7c4b6c3deabc8991c64a561be52aa2b8e74d953a25f.png" />
-<img alt="../_images/0ce8b165d1d7e7f347303d031484d841cc7e4446504fadfa7c7dbf29f0ef8f4a.png" src="../_images/0ce8b165d1d7e7f347303d031484d841cc7e4446504fadfa7c7dbf29f0ef8f4a.png" />
-<img alt="../_images/58189cb9069a7e54a1aa73d9fb76ad907811c2a9d9e6d9d282c2bde1a2a901d6.png" src="../_images/58189cb9069a7e54a1aa73d9fb76ad907811c2a9d9e6d9d282c2bde1a2a901d6.png" />
+<img alt="../_images/c17d15c2dbe21a5c427d9171496a51bda4d774a158cfcefc9981043f57e913b5.png" src="../_images/c17d15c2dbe21a5c427d9171496a51bda4d774a158cfcefc9981043f57e913b5.png" />
+<img alt="../_images/3858da348dfcf73bf5b15277c823106d4a9c8c09e29410ddfdf005c806b55082.png" src="../_images/3858da348dfcf73bf5b15277c823106d4a9c8c09e29410ddfdf005c806b55082.png" />
+<img alt="../_images/bc217b3c10bc5daff431cf6d956a7b706ae9d46cf6ff06b6a0863d0ea19e9224.png" src="../_images/bc217b3c10bc5daff431cf6d956a7b706ae9d46cf6ff06b6a0863d0ea19e9224.png" />
+<img alt="../_images/d8c7952e300f90c68cb0e91b3bddf5679e378b54f4e5e40a461723015d911e40.png" src="../_images/d8c7952e300f90c68cb0e91b3bddf5679e378b54f4e5e40a461723015d911e40.png" />
+<img alt="../_images/066cbfcf730055aad2c6d6a55365330260de780d261dea69deba69f979fa79a2.png" src="../_images/066cbfcf730055aad2c6d6a55365330260de780d261dea69deba69f979fa79a2.png" />
+<img alt="../_images/6f97896b704745bacb85b8f17dcc38f171fe3d67b904dbb2bf7de53f46d2c8c2.png" src="../_images/6f97896b704745bacb85b8f17dcc38f171fe3d67b904dbb2bf7de53f46d2c8c2.png" />
+<img alt="../_images/fd0b699b9492dee655859432f71e88ccca2b2c8d01827f1f4da8b4960e86c8a8.png" src="../_images/fd0b699b9492dee655859432f71e88ccca2b2c8d01827f1f4da8b4960e86c8a8.png" />
+<img alt="../_images/dbef511c19f1edebaf8c7ec2652230d9a3d2d58a348d34ec34058c4cf864f65b.png" src="../_images/dbef511c19f1edebaf8c7ec2652230d9a3d2d58a348d34ec34058c4cf864f65b.png" />
+<img alt="../_images/14f7b013ba6d22ebda82efb67183a76bae0dd0aa97ff7b5c34b789cc1d56a5f2.png" src="../_images/14f7b013ba6d22ebda82efb67183a76bae0dd0aa97ff7b5c34b789cc1d56a5f2.png" />
+<img alt="../_images/11a9246c95ec0356284f6504e36669700d9282e88f413088136055efe4dd9742.png" src="../_images/11a9246c95ec0356284f6504e36669700d9282e88f413088136055efe4dd9742.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -525,12 +507,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6d57024a604143ff30b2936604fe692dece8b0abe46fa9192657dab279bcf0d2.png" src="../_images/6d57024a604143ff30b2936604fe692dece8b0abe46fa9192657dab279bcf0d2.png" />
+<img alt="../_images/1f17a1d1e7e1f3650c146c1f2dd1bf2dc949caa885204c408839c2cd4ef03beb.png" src="../_images/1f17a1d1e7e1f3650c146c1f2dd1bf2dc949caa885204c408839c2cd4ef03beb.png" />
 </div>
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-500-units">
-<h1>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
@@ -539,7 +521,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bea53ed499c144ce8494acf73863058e8f7f721a644f0632ccc4d0066489464f.png" src="../_images/bea53ed499c144ce8494acf73863058e8f7f721a644f0632ccc4d0066489464f.png" />
+<img alt="../_images/17f5a3c5d55d9191554d66a115162a48a79161e915c67adb1bc002f6298c7147.png" src="../_images/17f5a3c5d55d9191554d66a115162a48a79161e915c67adb1bc002f6298c7147.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -549,16 +531,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bfc025355350fb270454956cc34a9751c8408984f51ce6a8a213a1c9ec2f4f81.png" src="../_images/bfc025355350fb270454956cc34a9751c8408984f51ce6a8a213a1c9ec2f4f81.png" />
-<img alt="../_images/6f3e333be5672c681e41dbc64afc30d2ce4f91c962013efd172e5175a6396f53.png" src="../_images/6f3e333be5672c681e41dbc64afc30d2ce4f91c962013efd172e5175a6396f53.png" />
-<img alt="../_images/8891d762fca34b03ee5492bfff15b580076d619be49ccb0e09015b2783dbf57b.png" src="../_images/8891d762fca34b03ee5492bfff15b580076d619be49ccb0e09015b2783dbf57b.png" />
-<img alt="../_images/73e1ac536f6d2c9f44edd1a37aa11aa9616b3688f93946d7261e3554cb467569.png" src="../_images/73e1ac536f6d2c9f44edd1a37aa11aa9616b3688f93946d7261e3554cb467569.png" />
-<img alt="../_images/9a705deb521848769ede07336831cca9f982c819b4a240dd16b1d9f73fd15724.png" src="../_images/9a705deb521848769ede07336831cca9f982c819b4a240dd16b1d9f73fd15724.png" />
-<img alt="../_images/27d17c743ff6ceaba6b7ddd44e0a88a3bf539616a051f2594bd2b97bb2615afb.png" src="../_images/27d17c743ff6ceaba6b7ddd44e0a88a3bf539616a051f2594bd2b97bb2615afb.png" />
-<img alt="../_images/ed792122160aea1c9b32a95b3e1387490c9d64606170931fc5a49120d48636f3.png" src="../_images/ed792122160aea1c9b32a95b3e1387490c9d64606170931fc5a49120d48636f3.png" />
-<img alt="../_images/b82491a4d1ffea21038955bf4b86bb22083196fde16c63d2f3646a0b7240c613.png" src="../_images/b82491a4d1ffea21038955bf4b86bb22083196fde16c63d2f3646a0b7240c613.png" />
-<img alt="../_images/1bb0fbeb6c06eba29dff085d28c2f1a44d9c4e13854737686363dca7499c54d9.png" src="../_images/1bb0fbeb6c06eba29dff085d28c2f1a44d9c4e13854737686363dca7499c54d9.png" />
-<img alt="../_images/9382106dee31ffb82b5fc3c5e43e19c11e18b9de509551afa2419df4764e076e.png" src="../_images/9382106dee31ffb82b5fc3c5e43e19c11e18b9de509551afa2419df4764e076e.png" />
+<img alt="../_images/1226c09c8b4b1d8fd48b76c2a8f18f2d77d98bceff05de1c9e78a8f73cdb004c.png" src="../_images/1226c09c8b4b1d8fd48b76c2a8f18f2d77d98bceff05de1c9e78a8f73cdb004c.png" />
+<img alt="../_images/600b1077ed59a2ff1c527962e7f385e322912831cfb90e276464033c4500ee53.png" src="../_images/600b1077ed59a2ff1c527962e7f385e322912831cfb90e276464033c4500ee53.png" />
+<img alt="../_images/57f4d2c10f9fd64c3933dbdaea2db36a8351427363e87b00ccad807311aa6113.png" src="../_images/57f4d2c10f9fd64c3933dbdaea2db36a8351427363e87b00ccad807311aa6113.png" />
+<img alt="../_images/693e1d98b5fd1d86429cdc6bfb438061fdb2f88beff82b4867ac51a624924374.png" src="../_images/693e1d98b5fd1d86429cdc6bfb438061fdb2f88beff82b4867ac51a624924374.png" />
+<img alt="../_images/2f2da8e60437fb519c82981a6f1c0b855346ec2c354ed9d8bacc66fd16d64e92.png" src="../_images/2f2da8e60437fb519c82981a6f1c0b855346ec2c354ed9d8bacc66fd16d64e92.png" />
+<img alt="../_images/7b22901e86d4a429f7c54db58333df52249c885880a1917e4dc9216f6d3c089a.png" src="../_images/7b22901e86d4a429f7c54db58333df52249c885880a1917e4dc9216f6d3c089a.png" />
+<img alt="../_images/9c176565f3cc7203bbae5221d33d1aecd68e1ca8af4b6e04a3e0d7664d20ed0a.png" src="../_images/9c176565f3cc7203bbae5221d33d1aecd68e1ca8af4b6e04a3e0d7664d20ed0a.png" />
+<img alt="../_images/5f1f30855e210bd22c39cedd40deca60fb623acc19075e5d2a3c1b37d6d183b4.png" src="../_images/5f1f30855e210bd22c39cedd40deca60fb623acc19075e5d2a3c1b37d6d183b4.png" />
+<img alt="../_images/2980da8f2359069d6e8fddd9b83f786a9889148719a6be2e0d9e628e0d69b5b1.png" src="../_images/2980da8f2359069d6e8fddd9b83f786a9889148719a6be2e0d9e628e0d69b5b1.png" />
+<img alt="../_images/9b7afb556e7a4c356d6f678317f0d2958828d89b846c4bbff0fdb66891a5fcd0.png" src="../_images/9b7afb556e7a4c356d6f678317f0d2958828d89b846c4bbff0fdb66891a5fcd0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -568,12 +550,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ffd0c8b6073d3bb68048687aabfd8f653af501a039c261de3b2d23c75a25194a.png" src="../_images/ffd0c8b6073d3bb68048687aabfd8f653af501a039c261de3b2d23c75a25194a.png" />
+<img alt="../_images/b4ac97712c6474352e58cbe7646c48c76c7e151b351f56ce8412da0f4d96d1b6.png" src="../_images/b4ac97712c6474352e58cbe7646c48c76c7e151b351f56ce8412da0f4d96d1b6.png" />
 </div>
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-1000-units">
-<h1>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -582,7 +564,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7890aac715833a495d5a66ee64fe5599d4e73e4b77a3459c0de02cb60e4aff06.png" src="../_images/7890aac715833a495d5a66ee64fe5599d4e73e4b77a3459c0de02cb60e4aff06.png" />
+<img alt="../_images/67f58ebe3e7ac187f2e4a4b38993b45b627aaab83da5ef030f83173d4b413281.png" src="../_images/67f58ebe3e7ac187f2e4a4b38993b45b627aaab83da5ef030f83173d4b413281.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -592,16 +574,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ae833dc523a95c57cff497e7dc517fad4f01bca4383475bc14ae62962f7a5723.png" src="../_images/ae833dc523a95c57cff497e7dc517fad4f01bca4383475bc14ae62962f7a5723.png" />
-<img alt="../_images/78d44c367d9e8930785a9828398f6adb358f437664f18fe6f226df56494262f9.png" src="../_images/78d44c367d9e8930785a9828398f6adb358f437664f18fe6f226df56494262f9.png" />
-<img alt="../_images/a67527d308f824e7f2cb322eee386a958ddc93c3d45615ef7ea15d9cdaeb200e.png" src="../_images/a67527d308f824e7f2cb322eee386a958ddc93c3d45615ef7ea15d9cdaeb200e.png" />
-<img alt="../_images/e87787dc5156263d8a0279ecb69b5605189cc4edc3d758aeb356cd32d806cbe2.png" src="../_images/e87787dc5156263d8a0279ecb69b5605189cc4edc3d758aeb356cd32d806cbe2.png" />
-<img alt="../_images/26d5aeed2b3e2dd65ad16fcddd628309df77944fcb1a1fedaac5cadb98b98b96.png" src="../_images/26d5aeed2b3e2dd65ad16fcddd628309df77944fcb1a1fedaac5cadb98b98b96.png" />
-<img alt="../_images/87c0b9bf4e161e517d35eb573c7d335ad0e21123eef0e6cce151da8b76e22761.png" src="../_images/87c0b9bf4e161e517d35eb573c7d335ad0e21123eef0e6cce151da8b76e22761.png" />
-<img alt="../_images/373cd40a437bb3efb1340242854da1fc461edc829d8733a734dcc98ee3f8f0a6.png" src="../_images/373cd40a437bb3efb1340242854da1fc461edc829d8733a734dcc98ee3f8f0a6.png" />
-<img alt="../_images/e3110bb76a9250eb9f690dc06431f4814f798f5a1dd7d8beebf0be810ca9ceda.png" src="../_images/e3110bb76a9250eb9f690dc06431f4814f798f5a1dd7d8beebf0be810ca9ceda.png" />
-<img alt="../_images/815d5bc41f657bbc69897d1b7f69775f9802ed052e7e203b8443677948001dfb.png" src="../_images/815d5bc41f657bbc69897d1b7f69775f9802ed052e7e203b8443677948001dfb.png" />
-<img alt="../_images/244c76776a7ce2dfbc2f47dfae2389440a2eb85aecdd0653f87d48ee4708b059.png" src="../_images/244c76776a7ce2dfbc2f47dfae2389440a2eb85aecdd0653f87d48ee4708b059.png" />
+<img alt="../_images/9e63b03a1b79d90498d1703867631df9c4272e13664d0174febc9c6a34622e8f.png" src="../_images/9e63b03a1b79d90498d1703867631df9c4272e13664d0174febc9c6a34622e8f.png" />
+<img alt="../_images/416b13bbc78f8a4993e9523e45fa8d6794bee6b53b84de6a31355c66506c2bf4.png" src="../_images/416b13bbc78f8a4993e9523e45fa8d6794bee6b53b84de6a31355c66506c2bf4.png" />
+<img alt="../_images/854c6bc62b250821828e20134b3a615b3d954624ff471c0ace0b104bacd26b73.png" src="../_images/854c6bc62b250821828e20134b3a615b3d954624ff471c0ace0b104bacd26b73.png" />
+<img alt="../_images/6deca73c0757d61c2e0c2a84216b7835927f63fc1809672d0712ef0a1a9f94a4.png" src="../_images/6deca73c0757d61c2e0c2a84216b7835927f63fc1809672d0712ef0a1a9f94a4.png" />
+<img alt="../_images/19a9a6eaab82e733c03b14376885f0a7f11a3bea0caa6a404f609b7bb9b93a5b.png" src="../_images/19a9a6eaab82e733c03b14376885f0a7f11a3bea0caa6a404f609b7bb9b93a5b.png" />
+<img alt="../_images/32c5ee5ed5bf8998e371bd919a0d54ad4280469df58dca990540cc96fc7a0fb6.png" src="../_images/32c5ee5ed5bf8998e371bd919a0d54ad4280469df58dca990540cc96fc7a0fb6.png" />
+<img alt="../_images/c9314f2d060381044ae550273e7b0f34b44a8d8b40d83e6713fe54bb857f36dc.png" src="../_images/c9314f2d060381044ae550273e7b0f34b44a8d8b40d83e6713fe54bb857f36dc.png" />
+<img alt="../_images/0f7f8cbe8770fd91b5bcee20dd48f8b898138bcaaff7c8d37c6bc67749464294.png" src="../_images/0f7f8cbe8770fd91b5bcee20dd48f8b898138bcaaff7c8d37c6bc67749464294.png" />
+<img alt="../_images/c7609cfe8eb32e31e8f9b8f621ec70e2a93614de1fe4b3a914f45c484b4718d2.png" src="../_images/c7609cfe8eb32e31e8f9b8f621ec70e2a93614de1fe4b3a914f45c484b4718d2.png" />
+<img alt="../_images/48b22dc77bb28f09f9dd9e629a6cb437c3a54e4b664e90477134ccd226812f49.png" src="../_images/48b22dc77bb28f09f9dd9e629a6cb437c3a54e4b664e90477134ccd226812f49.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -611,9 +593,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9dfa3ea1f0791f9fe69ebd792cff44b416b326ecd285a8284b3d9b43c7615118.png" src="../_images/9dfa3ea1f0791f9fe69ebd792cff44b416b326ecd285a8284b3d9b43c7615118.png" />
+<img alt="../_images/dbdf50d1f32c7e204370128f013816f450168d820ed6d546e53718cfbaa6f16d.png" src="../_images/dbdf50d1f32c7e204370128f013816f450168d820ed6d546e53718cfbaa6f16d.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -652,7 +635,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analysis when the goal is to win 10 units</p>
+        <p class="prev-next-title">Labouchere simulation</p>
       </div>
     </a>
     <a class="right-next"
@@ -660,7 +643,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Starting bet = 1, Allowed money lost = -10</p>
+        <p class="prev-next-title">Paroli simulation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -679,12 +662,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -708,7 +690,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

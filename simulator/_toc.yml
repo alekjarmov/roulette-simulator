@@ -5,7 +5,8 @@ format: jb-book
 root: intro
 chapters:
 - file: simulator_code/roulette_test
-- file: simulator_code/exepcted_values
+- file: model
+- file: simulator_code/expected_values
 - file: simulator_code/single_betting
 - file: simulator_code/half_betting
 - file: simulator_code/andrucci_simulation
@@ -14,4 +15,3 @@ chapters:
 - file: simulator_code/labouchere_simulation
 - file: simulator_code/martingale_simulation
 - file: simulator_code/paroli_simulation
-- file: conclusion

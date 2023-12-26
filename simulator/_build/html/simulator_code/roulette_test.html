@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/roulette_test';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Simulating whether there was a gain at some point" href="single_betting.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="../intro.html" />
+    <link rel="next" title="Model explanation" href="../model.html" />
+    <link rel="prev" title="Roulette simulator" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -399,7 +379,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="checking-if-the-roulette-wheel-is-fair">
 <h1>Checking if the roulette wheel is fair<a class="headerlink" href="#checking-if-the-roulette-wheel-is-fair" title="Permalink to this heading">#</a></h1>
-<p>We would expect that the spins would form a uniform distribution. We can check this by using a chi-squared test.</p>
+<p>We would expect that the spins would form a uniform distribution. This can be checked by using a chi-squared test.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
@@ -432,7 +412,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1d29032382a7c7192c91a8f9c4479fa1a726f20f775f2d44fc94ef5bd3336228.png" src="../_images/1d29032382a7c7192c91a8f9c4479fa1a726f20f775f2d44fc94ef5bd3336228.png" />
+<img alt="../_images/c9568a724311059b2de06525f0972b5985c9d87b42badd2e4e0a608a0c7a79c1.png" src="../_images/c9568a724311059b2de06525f0972b5985c9d87b42badd2e4e0a608a0c7a79c1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -465,9 +445,9 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Our hypothesis is that the distribution of spins is uniform.
 Expected Frequency: 81081.08108108108
-Observed Frequencies: [80747, 81447, 81233, 80810, 80985, 80942, 81388, 80951, 81438, 80982, 81587, 80898, 81513, 81405, 81002, 81202, 81097, 81020, 80816, 81179, 80716, 81113, 81280, 80775, 80623, 80884, 81357, 80968, 81086, 80943, 80809, 80335, 81638, 81550, 80919, 81084, 81278]
-Chi2 Stat: 19.45492525449066
-P-value: 0.9888829370782358
+Observed Frequencies: [80990, 81064, 80841, 81204, 80891, 81009, 81399, 81072, 81287, 80969, 81282, 81733, 81092, 80837, 80857, 81536, 81083, 81188, 81058, 80864, 80700, 81337, 80923, 80972, 80999, 80974, 81028, 81014, 81144, 81096, 81581, 81334, 80944, 80907, 81143, 80656, 80992]
+Chi2 Stat: 12.028451820033167
+P-value: 0.9999413827197413
 Accept the null hypothesis. The data follows a uniform distribution.
 </pre></div>
 </div>
@@ -512,15 +492,15 @@ Accept the null hypothesis. The data follows a uniform distribution.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        <p class="prev-next-title">Roulette simulator</p>
       </div>
     </a>
     <a class="right-next"
-       href="single_betting.html"
+       href="../model.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simulating whether there was a gain at some point</p>
+        <p class="prev-next-title">Model explanation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,7 +530,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

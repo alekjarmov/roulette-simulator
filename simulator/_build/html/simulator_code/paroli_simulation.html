@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Starting bet = 1, Allowed money lost = -10 &#8212; Roulette simulator</title>
+    <title>Paroli simulation &#8212; Roulette simulator</title>
   
   
   
@@ -65,8 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/paroli_simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Notebooks with MyST Markdown" href="../conclusion.html" />
-    <link rel="prev" title="Analysis when the goal is to win 10 units" href="martingale_simulation.html" />
+    <link rel="prev" title="Martingale simulation" href="martingale_simulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +163,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -385,7 +364,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Starting bet = 1, Allowed money lost = -10</h1>
+    <h1>Paroli simulation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,36 +374,35 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Starting bet = 1, Allowed money lost = -10</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-1-allowed-money-lost-10">Starting bet = 1, Allowed money lost = -10</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -435,7 +413,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="paroli-simulation">
+<h1>Paroli simulation<a class="headerlink" href="#paroli-simulation" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -446,6 +426,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The Paroli system is the reverse of the Martingale strategy. If you lose a round, you keep your stake the same. And if you win, you double your stake – this is known as ‘positive progression staking’. The overall aim of Paroli is to double your stake for three winning spins in a row. Once that happens, you go back to your starting stake.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">paroli_betting</span><span class="p">(</span><span class="n">goal_money_won</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">):</span>
@@ -482,8 +463,8 @@ document.write(`
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-1-allowed-money-lost-10">
-<h1>Starting bet = 1, Allowed money lost = -10<a class="headerlink" href="#starting-bet-1-allowed-money-lost-10" title="Permalink to this heading">#</a></h1>
+<section id="starting-bet-1-allowed-money-lost-10">
+<h2>Starting bet = 1, Allowed money lost = -10<a class="headerlink" href="#starting-bet-1-allowed-money-lost-10" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bet</span> <span class="o">=</span> <span class="mi">1</span>
@@ -516,11 +497,11 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
-10.925329756315671
+10.883047707271885
 For goal 10 mean money lost:
 -11.0
 For goal 100 mean money won:
-100.8875
+100.81865284974093
 For goal 100 mean money lost:
 -11.0
 For goal 500 mean money won:
@@ -536,7 +517,7 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <section id="analysis-when-the-goal-is-to-win-10-units">
-<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
@@ -551,7 +532,7 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0967464270de70f0e0ad05ad115c08635e7c64247d5273df5a1a2c3e93e1f3fb.png" src="../_images/0967464270de70f0e0ad05ad115c08635e7c64247d5273df5a1a2c3e93e1f3fb.png" />
+<img alt="../_images/083dd69b31697cfb2fe3863faf0749843402ff7f4016d9710bc8b0a393ac27b5.png" src="../_images/083dd69b31697cfb2fe3863faf0749843402ff7f4016d9710bc8b0a393ac27b5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -562,7 +543,7 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e66d6ed29a8777f21e3038e8659cd780bb9de28d5a6d1b818f7bc0e999746506.png" src="../_images/e66d6ed29a8777f21e3038e8659cd780bb9de28d5a6d1b818f7bc0e999746506.png" />
+<img alt="../_images/cdaf5b9fd9929b0c6dfb56a61098705021a51bed930e3885045dfd8435e093be.png" src="../_images/cdaf5b9fd9929b0c6dfb56a61098705021a51bed930e3885045dfd8435e093be.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -572,21 +553,21 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e65d9861427c9079837431924aa7313b44113405a3daee767bd91771ad34b18f.png" src="../_images/e65d9861427c9079837431924aa7313b44113405a3daee767bd91771ad34b18f.png" />
-<img alt="../_images/f955f322f2cb6650eed45a70d3bcee0c404e07f598bba9071d47e2de57231d42.png" src="../_images/f955f322f2cb6650eed45a70d3bcee0c404e07f598bba9071d47e2de57231d42.png" />
-<img alt="../_images/a668df0325bbe85e92f4da8aa640c9948a57680aeaadcd7188ba7d961ec9493f.png" src="../_images/a668df0325bbe85e92f4da8aa640c9948a57680aeaadcd7188ba7d961ec9493f.png" />
-<img alt="../_images/19f9d03332675e92da70e8f3c08457e5a6b443a947a7dd4e9e66af9870f789fc.png" src="../_images/19f9d03332675e92da70e8f3c08457e5a6b443a947a7dd4e9e66af9870f789fc.png" />
-<img alt="../_images/ac112214ba451dddc1273ff32728894a4b69be5a7959010460a1a95932506fc6.png" src="../_images/ac112214ba451dddc1273ff32728894a4b69be5a7959010460a1a95932506fc6.png" />
-<img alt="../_images/f9533cd3a805aeef7ca272e7ee986dfb5ea77470083a35d3e449f40c67afeae1.png" src="../_images/f9533cd3a805aeef7ca272e7ee986dfb5ea77470083a35d3e449f40c67afeae1.png" />
-<img alt="../_images/1eb5324a516390001fa55e9ee7502eda1aa730d00a76827d48ce1c18362f8e12.png" src="../_images/1eb5324a516390001fa55e9ee7502eda1aa730d00a76827d48ce1c18362f8e12.png" />
-<img alt="../_images/727aac200740fd9579d3f679b51c3957e696417cd7c76e62afe8957635bf058d.png" src="../_images/727aac200740fd9579d3f679b51c3957e696417cd7c76e62afe8957635bf058d.png" />
-<img alt="../_images/752e472bf0043e424fe9682700afc6448db099492eeb2b7a7b2e9dc4ce347d65.png" src="../_images/752e472bf0043e424fe9682700afc6448db099492eeb2b7a7b2e9dc4ce347d65.png" />
-<img alt="../_images/bcd4113255002e78b944a7b366b5409561b56c5a23a95ebb4ea5c7423ea9cabe.png" src="../_images/bcd4113255002e78b944a7b366b5409561b56c5a23a95ebb4ea5c7423ea9cabe.png" />
+<img alt="../_images/209406939c79b37fb0a43c84eb1257d34b3eea71151d22b1976347adcf1d1c03.png" src="../_images/209406939c79b37fb0a43c84eb1257d34b3eea71151d22b1976347adcf1d1c03.png" />
+<img alt="../_images/11f7017637f71e7a40e02f6b3d39e559467c5cc80e08e94451b250b49ddbd6a0.png" src="../_images/11f7017637f71e7a40e02f6b3d39e559467c5cc80e08e94451b250b49ddbd6a0.png" />
+<img alt="../_images/2d68e1089f4a89398dbf72fe87c1b335404ca19aec2a879dc5d75e98a83ee21a.png" src="../_images/2d68e1089f4a89398dbf72fe87c1b335404ca19aec2a879dc5d75e98a83ee21a.png" />
+<img alt="../_images/3d4fc1336d530981aa344117c2551a69cb312577e6e9d0fcaf11e3b45db3591e.png" src="../_images/3d4fc1336d530981aa344117c2551a69cb312577e6e9d0fcaf11e3b45db3591e.png" />
+<img alt="../_images/16881dfda30cc317a0ec248f7a74d6855cd052b355373b7db09930133939285b.png" src="../_images/16881dfda30cc317a0ec248f7a74d6855cd052b355373b7db09930133939285b.png" />
+<img alt="../_images/7064ede14e1d64fd616aeaaa5bc0a9628819349e4a2b29c06313be8439d22811.png" src="../_images/7064ede14e1d64fd616aeaaa5bc0a9628819349e4a2b29c06313be8439d22811.png" />
+<img alt="../_images/183aa741fe2bbca7e52f79c47e4b231e821be89f7981e15c1bc7f5f952cc2af0.png" src="../_images/183aa741fe2bbca7e52f79c47e4b231e821be89f7981e15c1bc7f5f952cc2af0.png" />
+<img alt="../_images/ae5ef1e657817a8ce0a1f1fdf3f26577f341885380bc25a768ab467c7ad079b0.png" src="../_images/ae5ef1e657817a8ce0a1f1fdf3f26577f341885380bc25a768ab467c7ad079b0.png" />
+<img alt="../_images/f0eb0e99c125f18f946a85c5472cfccc70285d06a4be4a62310d493a714558cd.png" src="../_images/f0eb0e99c125f18f946a85c5472cfccc70285d06a4be4a62310d493a714558cd.png" />
+<img alt="../_images/dd4a22551bd83980113063d4805010a995687fc788ba85c559ad0525038a7531.png" src="../_images/dd4a22551bd83980113063d4805010a995687fc788ba85c559ad0525038a7531.png" />
 </div>
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-100-units">
-<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
@@ -601,7 +582,7 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/71551eab57ce2812140f0ecd72a360dd8501e3a042bf3501e584f4206fc1207c.png" src="../_images/71551eab57ce2812140f0ecd72a360dd8501e3a042bf3501e584f4206fc1207c.png" />
+<img alt="../_images/3e0a68569793a6b0a5b58de5ae06917582c647765c461c537e98a26aa814a71c.png" src="../_images/3e0a68569793a6b0a5b58de5ae06917582c647765c461c537e98a26aa814a71c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -612,7 +593,7 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e9d8b083938cb8db65211f648f77d911be8b1fcf0c0c599fe24eb0d670356c91.png" src="../_images/e9d8b083938cb8db65211f648f77d911be8b1fcf0c0c599fe24eb0d670356c91.png" />
+<img alt="../_images/45b5144ee281cccff1a58c18486e16e43e887798319bd7508dd3c9e67c3e2c7d.png" src="../_images/45b5144ee281cccff1a58c18486e16e43e887798319bd7508dd3c9e67c3e2c7d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -622,21 +603,21 @@ For goal 1000 mean money lost:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a44a3c91f12ac28f38ff17b22804cda930b99ee1f47f15af2abe3d1c054dbf71.png" src="../_images/a44a3c91f12ac28f38ff17b22804cda930b99ee1f47f15af2abe3d1c054dbf71.png" />
-<img alt="../_images/ef0fa222159a01ab7c24fabd4ae073e0e477d6e6298455185e2f85aebb75147a.png" src="../_images/ef0fa222159a01ab7c24fabd4ae073e0e477d6e6298455185e2f85aebb75147a.png" />
-<img alt="../_images/dc55e35957a8fd11c6acaabbec28d2ad93b9c8a7b52fc74e3e98a530994e74b4.png" src="../_images/dc55e35957a8fd11c6acaabbec28d2ad93b9c8a7b52fc74e3e98a530994e74b4.png" />
-<img alt="../_images/dbb7725a71a115c9698f24d6665b33590e92856916e53e67c08df4f089ad118d.png" src="../_images/dbb7725a71a115c9698f24d6665b33590e92856916e53e67c08df4f089ad118d.png" />
-<img alt="../_images/5d913b37a6316b137b730a295e7d6a799c47c744fedc0f0d12f6c20a9ff52ba7.png" src="../_images/5d913b37a6316b137b730a295e7d6a799c47c744fedc0f0d12f6c20a9ff52ba7.png" />
-<img alt="../_images/13e204064ba6faf400b70fa89b887afc278475e82e3059bead8342f608104712.png" src="../_images/13e204064ba6faf400b70fa89b887afc278475e82e3059bead8342f608104712.png" />
-<img alt="../_images/fb7747d4c4db0c6c557dd9e57bc0109b2c80b478eeb8c50e2c11bbb71548435f.png" src="../_images/fb7747d4c4db0c6c557dd9e57bc0109b2c80b478eeb8c50e2c11bbb71548435f.png" />
-<img alt="../_images/343582952da24c8ac5f2f0d7b796250e1d7760307f0055db88c45756debb4869.png" src="../_images/343582952da24c8ac5f2f0d7b796250e1d7760307f0055db88c45756debb4869.png" />
-<img alt="../_images/730075657cff1b2babb9caa2bfe0e653d3af2f9c718262581d8afd06af19a898.png" src="../_images/730075657cff1b2babb9caa2bfe0e653d3af2f9c718262581d8afd06af19a898.png" />
-<img alt="../_images/6d2073462e9581a312836d48a2307f50edc1f51e25c9fcbda75fda8a45da5190.png" src="../_images/6d2073462e9581a312836d48a2307f50edc1f51e25c9fcbda75fda8a45da5190.png" />
+<img alt="../_images/50688f7fccb75a360d20cfb9da29d37951906db28e12b59cf577497fe5ed1fd4.png" src="../_images/50688f7fccb75a360d20cfb9da29d37951906db28e12b59cf577497fe5ed1fd4.png" />
+<img alt="../_images/88ce9e962e813625e45fb27244a0e9cf2a10ebb82dd25f45a38907dbf42afab9.png" src="../_images/88ce9e962e813625e45fb27244a0e9cf2a10ebb82dd25f45a38907dbf42afab9.png" />
+<img alt="../_images/e4cd784c5236a1320e4798d0dd2f94e5dc495fe2eb59599d32e68aeded3ac5fa.png" src="../_images/e4cd784c5236a1320e4798d0dd2f94e5dc495fe2eb59599d32e68aeded3ac5fa.png" />
+<img alt="../_images/48dc37b95340ca00e34d0ab4ea2b6e9867ccf5bf5412e967d3e25776b3c40535.png" src="../_images/48dc37b95340ca00e34d0ab4ea2b6e9867ccf5bf5412e967d3e25776b3c40535.png" />
+<img alt="../_images/df4264dbd5d269c6beac6f6be4fb841f656dc1df432dc3c697aa6969389785e9.png" src="../_images/df4264dbd5d269c6beac6f6be4fb841f656dc1df432dc3c697aa6969389785e9.png" />
+<img alt="../_images/3f041acbace971bb62f1ae72d2c2651d26c64f4746ac4c32d68ebc7528b540c5.png" src="../_images/3f041acbace971bb62f1ae72d2c2651d26c64f4746ac4c32d68ebc7528b540c5.png" />
+<img alt="../_images/fcacb19cbb130d78910960ba41c8f81c7319759116735d74bb8286b26e9b2b8b.png" src="../_images/fcacb19cbb130d78910960ba41c8f81c7319759116735d74bb8286b26e9b2b8b.png" />
+<img alt="../_images/cb75259acf93aa6ab92834bcf26ee58d7af88b7f814401b3ba7e4f1a16ef0192.png" src="../_images/cb75259acf93aa6ab92834bcf26ee58d7af88b7f814401b3ba7e4f1a16ef0192.png" />
+<img alt="../_images/5e32c913060e31e98f3a34c77f8c39050a81b2d7d70dd50ee5a06b37e1aceb05.png" src="../_images/5e32c913060e31e98f3a34c77f8c39050a81b2d7d70dd50ee5a06b37e1aceb05.png" />
+<img alt="../_images/424f78abd9ea7614d329216fad8832225e57201828f344a7adaa84b024ba7fd9.png" src="../_images/424f78abd9ea7614d329216fad8832225e57201828f344a7adaa84b024ba7fd9.png" />
 </div>
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-500-units">
-<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
@@ -656,7 +637,7 @@ For goal 1000 mean money lost:
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-1000-units">
-<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -676,8 +657,8 @@ For goal 1000 mean money lost:
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-10-goal">
-<h1>Starting bet = goal, Allowed money lost = -10*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-10-goal" title="Permalink to this heading">#</a></h1>
+<section id="starting-bet-goal-allowed-money-lost-10-goal">
+<h2>Starting bet = goal, Allowed money lost = -10*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-10-goal" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -711,19 +692,19 @@ For goal 1000 mean money lost:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
-14.061165608770917
+14.086405529953916
 For goal 100 mean money won:
-141.5105184503966
+140.79963129392786
 For goal 500 mean money won:
-703.2082464674543
+704.3913093459018
 For goal 1000 mean money won:
-1404.7919293820933
+1408.0831408775982
 </pre></div>
 </div>
 </div>
 </div>
 <section id="id1">
-<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 10 units<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
@@ -738,7 +719,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8665
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8680
 </pre></div>
 </div>
 </div>
@@ -750,7 +731,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b9f787340be5c4c3d6bd7a7e7e852a27836863fb81519c35288c5f49e19e84c2.png" src="../_images/b9f787340be5c4c3d6bd7a7e7e852a27836863fb81519c35288c5f49e19e84c2.png" />
+<img alt="../_images/6b55fc71833bfeea5ff91b80483c49696d648a94c5f7f998c0899874b811365f.png" src="../_images/6b55fc71833bfeea5ff91b80483c49696d648a94c5f7f998c0899874b811365f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -761,7 +742,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14e76275a777e160436c2b0730b3993bca578365b2ba3583e11fe8328281078e.png" src="../_images/14e76275a777e160436c2b0730b3993bca578365b2ba3583e11fe8328281078e.png" />
+<img alt="../_images/9edcbc47d532a61807fd66e472ba636cb44e009ac8e8e68d4efb5924649e5d38.png" src="../_images/9edcbc47d532a61807fd66e472ba636cb44e009ac8e8e68d4efb5924649e5d38.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -771,24 +752,86 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/39620173ab556203d582601a13883fe71b624d970a67d619c5b00d46ee9cf876.png" src="../_images/39620173ab556203d582601a13883fe71b624d970a67d619c5b00d46ee9cf876.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 <img alt="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" src="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/fef1919e99b78dea8518faa08cf26df3d37b09796678409fcae27ffe6a4f176c.png" src="../_images/fef1919e99b78dea8518faa08cf26df3d37b09796678409fcae27ffe6a4f176c.png" />
+<img alt="../_images/41402451a864b18a5a0e17529b81e659593ba1eac0be47d0f78c2efd121a986f.png" src="../_images/41402451a864b18a5a0e17529b81e659593ba1eac0be47d0f78c2efd121a986f.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" src="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" />
-<img alt="../_images/098c9cdfa71626f5f180b82a009b44c78f21e4b2b8db7669fd76007d2ba56d39.png" src="../_images/098c9cdfa71626f5f180b82a009b44c78f21e4b2b8db7669fd76007d2ba56d39.png" />
 <img alt="../_images/c40c5beb1840d27626b0e3112cf128835aff8c9005f9c3101784f644a804e95a.png" src="../_images/c40c5beb1840d27626b0e3112cf128835aff8c9005f9c3101784f644a804e95a.png" />
-<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" src="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" />
 </div>
 </div>
 </section>
 <section id="id2">
-<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 100 units<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8679
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0f5b2aa32aadbb97ac68df5c2cebb93d4b8b1ec116ffb4823cad3a76fa6b45df.png" src="../_images/0f5b2aa32aadbb97ac68df5c2cebb93d4b8b1ec116ffb4823cad3a76fa6b45df.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/52dae0b0fc98d025abe37bc7955e604c3a498bee50e1924d15bd51b21d65a010.png" src="../_images/52dae0b0fc98d025abe37bc7955e604c3a498bee50e1924d15bd51b21d65a010.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/435742e221f943572f0d8b396db1d0d5e10bf12231b400e08ceb91e4ea27ec06.png" src="../_images/435742e221f943572f0d8b396db1d0d5e10bf12231b400e08ceb91e4ea27ec06.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" src="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" />
+<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
+<img alt="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" src="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Analysis when the goal is to win 500 units<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
 </pre></div>
 </div>
 </div>
@@ -817,75 +860,13 @@ For goal 1000 mean money won:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
-<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Successful simulations mean and std for </span><span class="si">{</span><span class="n">UNITS</span><span class="si">}</span><span class="s1"> units&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/4682e4faff2b70ff6de0473714750a609ad38755816394c99ce747f652c6e3d4.png" src="../_images/4682e4faff2b70ff6de0473714750a609ad38755816394c99ce747f652c6e3d4.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/4a4b1a26474229ba89fd9e8568d96aaf13e46b1f68bafc4d8accb3d48aed0813.png" src="../_images/4a4b1a26474229ba89fd9e8568d96aaf13e46b1f68bafc4d8accb3d48aed0813.png" />
-<img alt="../_images/c60aed23fcbe480391a75da7c39c92974e202c82a5e8bbe6d0139cc9592b1b61.png" src="../_images/c60aed23fcbe480391a75da7c39c92974e202c82a5e8bbe6d0139cc9592b1b61.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
-<img alt="../_images/37bb76e483a9c265114185a2638023bd2c8137205c92c17a4173f1cdcf6dd167.png" src="../_images/37bb76e483a9c265114185a2638023bd2c8137205c92c17a4173f1cdcf6dd167.png" />
-<img alt="../_images/39a82fa67cab19182c305c278b3c7206f1297e21f466d7c3eed0495e47f8133a.png" src="../_images/39a82fa67cab19182c305c278b3c7206f1297e21f466d7c3eed0495e47f8133a.png" />
-</div>
-</div>
-</section>
-<section id="id3">
-<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8634
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/f1b538841cc43b8ddbd59ff261d79d0d0c991a0e4c42433ff2223d1c07175819.png" src="../_images/f1b538841cc43b8ddbd59ff261d79d0d0c991a0e4c42433ff2223d1c07175819.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
 <span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Simulations mean and std&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/93b085bb1061bc386d49d9a2d5a8de50d8c02f47750d74d695c76261e1512846.png" src="../_images/93b085bb1061bc386d49d9a2d5a8de50d8c02f47750d74d695c76261e1512846.png" />
+<img alt="../_images/957ea9d1c35b36b953dbefa468162eaba9dcfb48919918fc59bf7c1e3f811b30.png" src="../_images/957ea9d1c35b36b953dbefa468162eaba9dcfb48919918fc59bf7c1e3f811b30.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -896,20 +877,20 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" src="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" />
-<img alt="../_images/59942fe01db252b3a377486a8a58b0e441b43007c81ea07ffbaef598f32252b7.png" src="../_images/59942fe01db252b3a377486a8a58b0e441b43007c81ea07ffbaef598f32252b7.png" />
-<img alt="../_images/a176890f199be58b7a183cdc273fc464667cb26b570aebc6fd0be7d571fb078b.png" src="../_images/a176890f199be58b7a183cdc273fc464667cb26b570aebc6fd0be7d571fb078b.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
-<img alt="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" src="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 </div>
 </div>
 </section>
 <section id="id4">
-<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -924,7 +905,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8723
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8660
 </pre></div>
 </div>
 </div>
@@ -936,7 +917,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2b088020b06706b3a2a0d0818bce16ccc22d6696af782fbac66270668bfea9ac.png" src="../_images/2b088020b06706b3a2a0d0818bce16ccc22d6696af782fbac66270668bfea9ac.png" />
+<img alt="../_images/4e739af7c5fecac1232b134801cc2955341ceba60e0cf9d400879fc19ad586c2.png" src="../_images/4e739af7c5fecac1232b134801cc2955341ceba60e0cf9d400879fc19ad586c2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -947,7 +928,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e90c35e52ea5b946723a7da5640d09e5af635b33fd7c89537c0ba3eeebe87512.png" src="../_images/e90c35e52ea5b946723a7da5640d09e5af635b33fd7c89537c0ba3eeebe87512.png" />
+<img alt="../_images/c50c38434965f5f23f8f73630bc0b15dcac86b9a1c028a05a30954d0c1625a46.png" src="../_images/c50c38434965f5f23f8f73630bc0b15dcac86b9a1c028a05a30954d0c1625a46.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,22 +938,22 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" src="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" />
+<img alt="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" src="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b3350dbf501797e71cf6d0cbbad3c7e648a89eb30eaffec45e6f46710136b6e9.png" src="../_images/b3350dbf501797e71cf6d0cbbad3c7e648a89eb30eaffec45e6f46710136b6e9.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/621e6c080dce42537aaa57a7ee91a6cc5c450681d77a1fd5751f6129eb4e665e.png" src="../_images/621e6c080dce42537aaa57a7ee91a6cc5c450681d77a1fd5751f6129eb4e665e.png" />
+<img alt="../_images/e43935a11eccb8b773439a872e08c10a19527d7a43d746cbdef8e87e96367d53.png" src="../_images/e43935a11eccb8b773439a872e08c10a19527d7a43d746cbdef8e87e96367d53.png" />
 <img alt="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" src="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/a6c06c5af01f40d70c6027805b5d4a3aba9919afe2a0debe5fa4287bb7795cfc.png" src="../_images/a6c06c5af01f40d70c6027805b5d4a3aba9919afe2a0debe5fa4287bb7795cfc.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
 <img alt="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" src="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" />
+<img alt="../_images/666194682d703ac20997efcebe54c3895caa62d1e81202e4df8b964fd75d4684.png" src="../_images/666194682d703ac20997efcebe54c3895caa62d1e81202e4df8b964fd75d4684.png" />
 </div>
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-20-goal">
-<h1>Starting bet = goal, Allowed money lost = -20*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-20-goal" title="Permalink to this heading">#</a></h1>
+<section id="starting-bet-goal-allowed-money-lost-20-goal">
+<h2>Starting bet = goal, Allowed money lost = -20*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-20-goal" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -1006,19 +987,19 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
-14.343610415077896
+14.155121631940657
 For goal 100 mean money won:
-142.83072236727588
+142.35922012852632
 For goal 500 mean money won:
-719.5519791213571
+720.9731725860759
 For goal 1000 mean money won:
-1426.3346743503316
+1435.7942807437207
 </pre></div>
 </div>
 </div>
 </div>
 <section id="id5">
-<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 10 units<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1033,7 +1014,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9179
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9167
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1026,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a7feb6dbc9691e2d80b268eba82b0e4daa5c4d23eb20474de388fe33c3665816.png" src="../_images/a7feb6dbc9691e2d80b268eba82b0e4daa5c4d23eb20474de388fe33c3665816.png" />
+<img alt="../_images/d0bf1f62723b7e0f73b09b0b52bc22b547b5ea18c12127891a520fab3cd59bb8.png" src="../_images/d0bf1f62723b7e0f73b09b0b52bc22b547b5ea18c12127891a520fab3cd59bb8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1056,7 +1037,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5f8254e2eac89c32e1e4ebb4e99781da66845664b82f3674e154ca764d7c90a9.png" src="../_images/5f8254e2eac89c32e1e4ebb4e99781da66845664b82f3674e154ca764d7c90a9.png" />
+<img alt="../_images/5348f71aec53a8dd3ac6a26a30839d382ab2e06c836d4fbc1c7b0a14971fba08.png" src="../_images/5348f71aec53a8dd3ac6a26a30839d382ab2e06c836d4fbc1c7b0a14971fba08.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1066,21 +1047,21 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b2fb2130ec420bcc052b7fcf16f4db75101c303b26027e958203d4f4585f5985.png" src="../_images/b2fb2130ec420bcc052b7fcf16f4db75101c303b26027e958203d4f4585f5985.png" />
-<img alt="../_images/f3df2489997ae69af655e9ca5ebe4a8dab3bcc7b05b222899df97213afb76b57.png" src="../_images/f3df2489997ae69af655e9ca5ebe4a8dab3bcc7b05b222899df97213afb76b57.png" />
+<img alt="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" src="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/63b8b0b16cfd25d3345a614f2a00162abefaccefa1abdd162bbd9d58a1bda032.png" src="../_images/63b8b0b16cfd25d3345a614f2a00162abefaccefa1abdd162bbd9d58a1bda032.png" />
-<img alt="../_images/0d1c34b3f450fd34a13523205fbc731f4df08ee20e884bd3a32c09fb4f469c0f.png" src="../_images/0d1c34b3f450fd34a13523205fbc731f4df08ee20e884bd3a32c09fb4f469c0f.png" />
+<img alt="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" src="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/f5fab27c67e85bac68302a110de3fa67173758573335cc0d368825a49e2c9134.png" src="../_images/f5fab27c67e85bac68302a110de3fa67173758573335cc0d368825a49e2c9134.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" src="../_images/80b1d000bbb9bc6c03f7fdc1bd8d86708e9ef3736a43fc110cafd8b5eb636702.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 </div>
 </div>
 </section>
 <section id="id6">
-<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 100 units<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
@@ -1095,7 +1076,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9192
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9181
 </pre></div>
 </div>
 </div>
@@ -1107,7 +1088,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c254663416299ecea6ced05b37878c61b4f4e985d944f61d959ccc75b1fe94f.png" src="../_images/0c254663416299ecea6ced05b37878c61b4f4e985d944f61d959ccc75b1fe94f.png" />
+<img alt="../_images/ee09a8c0f81ddbb90d1305357996e12cde19203dd82e2261d0f54364577a6a9f.png" src="../_images/ee09a8c0f81ddbb90d1305357996e12cde19203dd82e2261d0f54364577a6a9f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1118,7 +1099,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1375ee83bedee113480d146140b2c75a72d0702aefcb0d6deb00a80d8c5a6b3d.png" src="../_images/1375ee83bedee113480d146140b2c75a72d0702aefcb0d6deb00a80d8c5a6b3d.png" />
+<img alt="../_images/f957578ea546cfac0489dba353d31e3c8b86fe46b686851e4e93e1b03f934426.png" src="../_images/f957578ea546cfac0489dba353d31e3c8b86fe46b686851e4e93e1b03f934426.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1130,19 +1111,19 @@ For goal 1000 mean money won:
 <div class="cell_output docutils container">
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" src="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" />
-<img alt="../_images/1ac412faa368a12d718658abb30cff36cae859cf34cebb224017d45a4056c6b2.png" src="../_images/1ac412faa368a12d718658abb30cff36cae859cf34cebb224017d45a4056c6b2.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/6017c57bbf732ebc543207b48b63b05eb5f6410239111ec8097c5f21f439aef5.png" src="../_images/6017c57bbf732ebc543207b48b63b05eb5f6410239111ec8097c5f21f439aef5.png" />
 <img alt="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" src="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/37bb76e483a9c265114185a2638023bd2c8137205c92c17a4173f1cdcf6dd167.png" src="../_images/37bb76e483a9c265114185a2638023bd2c8137205c92c17a4173f1cdcf6dd167.png" />
+<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
 </div>
 </div>
 </section>
 <section id="id7">
-<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 500 units<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
@@ -1157,7 +1138,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9196
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9207
 </pre></div>
 </div>
 </div>
@@ -1169,7 +1150,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8330299e1a6d1b84bd7430f77488896c69952de91ef23dd65cdc86e196f1aa75.png" src="../_images/8330299e1a6d1b84bd7430f77488896c69952de91ef23dd65cdc86e196f1aa75.png" />
+<img alt="../_images/54e430b4ed98f5472249c4d294b7e00d3bc99e803ca74ed61bfcb0074c248c3f.png" src="../_images/54e430b4ed98f5472249c4d294b7e00d3bc99e803ca74ed61bfcb0074c248c3f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1180,7 +1161,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/061d5e5090705c140dc758ca2eb8533af4c8a53c7f8bbfc59b8a2881089a4720.png" src="../_images/061d5e5090705c140dc758ca2eb8533af4c8a53c7f8bbfc59b8a2881089a4720.png" />
+<img alt="../_images/a25341062d542bb0759d614af8627327a762d7960c43ea28076d5bff923be3d2.png" src="../_images/a25341062d542bb0759d614af8627327a762d7960c43ea28076d5bff923be3d2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1191,20 +1172,20 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/55a99e1c7a96e68f39984e6adca2ca44d2241769c58c2ba922bba5ba916bb6ca.png" src="../_images/55a99e1c7a96e68f39984e6adca2ca44d2241769c58c2ba922bba5ba916bb6ca.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 <img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/67e711d47748111d599fa511f05e32d31e1c8389d36f163e264661f33d00a164.png" src="../_images/67e711d47748111d599fa511f05e32d31e1c8389d36f163e264661f33d00a164.png" />
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/11541e15e157988844f8296fc0bc494930cd5a802abe55d5e0828eb162304ea2.png" src="../_images/11541e15e157988844f8296fc0bc494930cd5a802abe55d5e0828eb162304ea2.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/2cc313afb31cae4ae062bcff12903880232db50962c4da013b0472f9c0ff99a1.png" src="../_images/2cc313afb31cae4ae062bcff12903880232db50962c4da013b0472f9c0ff99a1.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 <img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
 </div>
 </div>
 </section>
 <section id="id8">
-<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -1231,7 +1212,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/65b668cdc159dfe188d9c03dc675d87fa2ea8e1af01eb2bdf6c8a377b5c962cd.png" src="../_images/65b668cdc159dfe188d9c03dc675d87fa2ea8e1af01eb2bdf6c8a377b5c962cd.png" />
+<img alt="../_images/8330299e1a6d1b84bd7430f77488896c69952de91ef23dd65cdc86e196f1aa75.png" src="../_images/8330299e1a6d1b84bd7430f77488896c69952de91ef23dd65cdc86e196f1aa75.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1242,7 +1223,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8c585c5296a2da57b8af24be133c6b87533d78d5664556ec72a2abc22e5c21ea.png" src="../_images/8c585c5296a2da57b8af24be133c6b87533d78d5664556ec72a2abc22e5c21ea.png" />
+<img alt="../_images/8c2336240935c1d93227d6c561e0ab4aa09500f9d1b307a2acdcfb4bff794be8.png" src="../_images/8c2336240935c1d93227d6c561e0ab4aa09500f9d1b307a2acdcfb4bff794be8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1253,21 +1234,21 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/9e47e28911f70bbdfcf146c2ac461038c945ac3b684be6cda4f399d91e6dc6c0.png" src="../_images/9e47e28911f70bbdfcf146c2ac461038c945ac3b684be6cda4f399d91e6dc6c0.png" />
+<img alt="../_images/621e6c080dce42537aaa57a7ee91a6cc5c450681d77a1fd5751f6129eb4e665e.png" src="../_images/621e6c080dce42537aaa57a7ee91a6cc5c450681d77a1fd5751f6129eb4e665e.png" />
+<img alt="../_images/730a4447f8210a437f06c81a883d26f197d1f9b22b20202aa4e37cc789117f40.png" src="../_images/730a4447f8210a437f06c81a883d26f197d1f9b22b20202aa4e37cc789117f40.png" />
+<img alt="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" src="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" />
+<img alt="../_images/84ead9a85d1d0bd8c51dbf4f5987993e5eaf31e77353d69ea49191b32244786a.png" src="../_images/84ead9a85d1d0bd8c51dbf4f5987993e5eaf31e77353d69ea49191b32244786a.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" src="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" src="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
 <img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
 </div>
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="starting-bet-goal-allowed-money-lost-30-goal">
-<h1>Starting bet = goal, Allowed money lost = -30*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-30-goal" title="Permalink to this heading">#</a></h1>
+<section id="starting-bet-goal-allowed-money-lost-30-goal">
+<h2>Starting bet = goal, Allowed money lost = -30*goal<a class="headerlink" href="#starting-bet-goal-allowed-money-lost-30-goal" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -1301,19 +1282,19 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For goal 10 mean money won:
-14.385403329065301
+14.34000642329515
 For goal 100 mean money won:
-145.07430997876858
+144.52640581569383
 For goal 500 mean money won:
-733.4335731929975
+724.7149099435148
 For goal 1000 mean money won:
-1441.7662116040956
+1439.1494817822418
 </pre></div>
 </div>
 </div>
 </div>
 <section id="id9">
-<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 10 units<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1328,7 +1309,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9372
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9341
 </pre></div>
 </div>
 </div>
@@ -1340,7 +1321,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8d80c533bce0acd6136742592b2512d37daa50f519dc581baca28dc8322f1200.png" src="../_images/8d80c533bce0acd6136742592b2512d37daa50f519dc581baca28dc8322f1200.png" />
+<img alt="../_images/9a05f0740dd0d3eb1679eb60df3726d57200d6db801457143b47fb06caba4101.png" src="../_images/9a05f0740dd0d3eb1679eb60df3726d57200d6db801457143b47fb06caba4101.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1351,7 +1332,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bc9540ae4a0a02efb42613b44e16dd5abb243daef1edbe0adb095de6b6080538.png" src="../_images/bc9540ae4a0a02efb42613b44e16dd5abb243daef1edbe0adb095de6b6080538.png" />
+<img alt="../_images/7a51bfbc6b6d085eb3db60552529f551b71d99f6b56172078a616f6b9c5a9695.png" src="../_images/7a51bfbc6b6d085eb3db60552529f551b71d99f6b56172078a616f6b9c5a9695.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1362,20 +1343,20 @@ For goal 1000 mean money won:
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/c2ec2b7ed96f3d9185455f545994fe236f9bb0ef117ae87c29769b15ffbcc185.png" src="../_images/c2ec2b7ed96f3d9185455f545994fe236f9bb0ef117ae87c29769b15ffbcc185.png" />
+<img alt="../_images/f2171fa3adbaae155c1e52eedd6f913bbe676e4b8b942d33cc683163b422dfc5.png" src="../_images/f2171fa3adbaae155c1e52eedd6f913bbe676e4b8b942d33cc683163b422dfc5.png" />
 <img alt="../_images/c40c5beb1840d27626b0e3112cf128835aff8c9005f9c3101784f644a804e95a.png" src="../_images/c40c5beb1840d27626b0e3112cf128835aff8c9005f9c3101784f644a804e95a.png" />
-<img alt="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" src="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
 <img alt="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" src="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" />
+<img alt="../_images/065a8de46bf516d1ac690c7037c3a0b6e01ff4ad52723e8f2fabff18becb827f.png" src="../_images/065a8de46bf516d1ac690c7037c3a0b6e01ff4ad52723e8f2fabff18becb827f.png" />
+<img alt="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" src="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" />
 <img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
-<img alt="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" src="../_images/c98b626c05f3532f7371fdc515b871230a83c84a15d1a6a9d5f5e68391deaf12.png" />
+<img alt="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" src="../_images/0390dd5eeef21412b3eb3e8f8a32f2b15826dc40ccd57c9601786c6e8e726fcd.png" />
 </div>
 </div>
 </section>
 <section id="id10">
-<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 100 units<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">100</span>
@@ -1390,7 +1371,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9420
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9354
 </pre></div>
 </div>
 </div>
@@ -1402,7 +1383,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/937cce9472ff8cd38f7436ab824ddde692f535d379fa3136405b8f06807b8ec4.png" src="../_images/937cce9472ff8cd38f7436ab824ddde692f535d379fa3136405b8f06807b8ec4.png" />
+<img alt="../_images/ba68f2099293968e8daa90b3af365a486bae594df4578aaf4ff0b776daa01255.png" src="../_images/ba68f2099293968e8daa90b3af365a486bae594df4578aaf4ff0b776daa01255.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1413,7 +1394,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf25177fe632b7c113ab64d0989b1232f4f16508b955e2c04ae38451583557cf.png" src="../_images/cf25177fe632b7c113ab64d0989b1232f4f16508b955e2c04ae38451583557cf.png" />
+<img alt="../_images/e033f554f68b675c9a57a6bf09c640f77ddcda83e77c351ae495293be10a8d39.png" src="../_images/e033f554f68b675c9a57a6bf09c640f77ddcda83e77c351ae495293be10a8d39.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1423,21 +1404,21 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
+<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
+<img alt="../_images/2f0db054b6be177488e16a4c84997cfda02c4dad104562f90de7a2f57f5454e7.png" src="../_images/2f0db054b6be177488e16a4c84997cfda02c4dad104562f90de7a2f57f5454e7.png" />
+<img alt="../_images/cfc3593a4d5f158214596a617f51611c6e15bd125910355c776d9087a45c7402.png" src="../_images/cfc3593a4d5f158214596a617f51611c6e15bd125910355c776d9087a45c7402.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
+<img alt="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" src="../_images/fdb0b015ce00238494734dac47a29faaac393deb880b30cbaf111f2dad77c406.png" />
+<img alt="../_images/f7ba334fa1815b22fe92408415cfd7f1944670e707e4b7a32f01db1338d48eac.png" src="../_images/f7ba334fa1815b22fe92408415cfd7f1944670e707e4b7a32f01db1338d48eac.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
 <img alt="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" src="../_images/acd52b86bb7759b2f0ff9e270275dd86fefb40282b64743ebd0c7472b84766bc.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
-<img alt="../_images/c114476ab5b0772af822313ff0874be1b2d2a36f92efe69974656857c2521371.png" src="../_images/c114476ab5b0772af822313ff0874be1b2d2a36f92efe69974656857c2521371.png" />
 <img alt="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" src="../_images/af4ef8376d7453b8a84104cc5d6a6f96013d9807309c404b03570c6ccae69c3e.png" />
 </div>
 </div>
 </section>
 <section id="id11">
-<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<h3>Analysis when the goal is to win 500 units<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">500</span>
@@ -1452,69 +1433,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9311
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/af4d8d1342fe02bac256e0bd2a2beffca72debc0ad5a6488280a610ad3169e20.png" src="../_images/af4d8d1342fe02bac256e0bd2a2beffca72debc0ad5a6488280a610ad3169e20.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
-<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Simulations mean and std&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/ec1e06f8ca1207b4147204f70acf7c2d3b8862ed96b76b178aed320969a2b214.png" src="../_images/ec1e06f8ca1207b4147204f70acf7c2d3b8862ed96b76b178aed320969a2b214.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/a329884858afe109b3fc511c5fb786b7ef9d68cd35701be22b5004d5e0bab860.png" src="../_images/a329884858afe109b3fc511c5fb786b7ef9d68cd35701be22b5004d5e0bab860.png" />
-<img alt="../_images/9f9957b428c6e7005d63e60264014ba48c3df3c83f4a0417e64d60e363332789.png" src="../_images/9f9957b428c6e7005d63e60264014ba48c3df3c83f4a0417e64d60e363332789.png" />
-<img alt="../_images/ba53ea96110c3d200a0a96f98371eba5cf24fade5429c5b91ab0bfae0c279821.png" src="../_images/ba53ea96110c3d200a0a96f98371eba5cf24fade5429c5b91ab0bfae0c279821.png" />
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
-<img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
-</div>
-</div>
-</section>
-<section id="id12">
-<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9376
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9383
 </pre></div>
 </div>
 </div>
@@ -1537,7 +1456,7 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4ec048f196e9fb78565ca46ed1ba535457bc038a84333818a14b26b910c37789.png" src="../_images/4ec048f196e9fb78565ca46ed1ba535457bc038a84333818a14b26b910c37789.png" />
+<img alt="../_images/58c052615f87481775b0fd0229ea954ac3db9fe05b9b91bebcc10b57d41f458e.png" src="../_images/58c052615f87481775b0fd0229ea954ac3db9fe05b9b91bebcc10b57d41f458e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1547,18 +1466,81 @@ For goal 1000 mean money won:
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/8e9e5c833f7af821281e7243c9ba131d6ed32a6ab51ae2da301000c999080896.png" src="../_images/8e9e5c833f7af821281e7243c9ba131d6ed32a6ab51ae2da301000c999080896.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/11541e15e157988844f8296fc0bc494930cd5a802abe55d5e0828eb162304ea2.png" src="../_images/11541e15e157988844f8296fc0bc494930cd5a802abe55d5e0828eb162304ea2.png" />
+<img alt="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" src="../_images/69953f04e892f6c2a42a6a5589f16184aa3a8306e146ae9d816d4127c1a4ef0f.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" src="../_images/00f45f3c11a7c7a807dd5a89c52d8691c892e0ac4810465106e51c25f83425ef.png" />
+<img alt="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" src="../_images/8561b8df0904f1dd173878dc3c1f46df32f1f3c451801268ab562c9ddc8f32ec.png" />
+</div>
+</div>
+</section>
+<section id="id12">
+<h3>Analysis when the goal is to win 1000 units<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UNITS</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9359
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_successful_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">UNITS</span><span class="p">],</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/18d2d78585b5edc04d2cc8e6df81a02fa3f804c30945cce77ff777723d97bc5b.png" src="../_images/18d2d78585b5edc04d2cc8e6df81a02fa3f804c30945cce77ff777723d97bc5b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+<span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Simulations mean and std&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b6fe4148ea33e68c7bcc295c9a9012fedccacddfca283b199688daad1f1aac0.png" src="../_images/9b6fe4148ea33e68c7bcc295c9a9012fedccacddfca283b199688daad1f1aac0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_money_histories</span><span class="p">(</span><span class="n">successful_histories</span><span class="p">,</span> <span class="n">UNITS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" src="../_images/fa4e4bb7c48998c654648a65bb384490a3646fe875393d5ce2672907e8aa5679.png" />
+<img alt="../_images/1510a12de6e8fa0d0ef40e92d7eceee9d5548c42acf76163bea31052fb5e2e4a.png" src="../_images/1510a12de6e8fa0d0ef40e92d7eceee9d5548c42acf76163bea31052fb5e2e4a.png" />
+<img alt="../_images/666194682d703ac20997efcebe54c3895caa62d1e81202e4df8b964fd75d4684.png" src="../_images/666194682d703ac20997efcebe54c3895caa62d1e81202e4df8b964fd75d4684.png" />
+<img alt="../_images/00839c6b66398bfe5ec1b589a224ddf5acce258e819cd3926ecf401dd8ddcbd2.png" src="../_images/00839c6b66398bfe5ec1b589a224ddf5acce258e819cd3926ecf401dd8ddcbd2.png" />
+<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
+<img alt="../_images/5d2819f72e35f55bd82da0a9cbaad8199b6d5bc85abd56010b00c5f292cd80bd.png" src="../_images/5d2819f72e35f55bd82da0a9cbaad8199b6d5bc85abd56010b00c5f292cd80bd.png" />
+<img alt="../_images/936ccd5a4ee690480338a93d4aa979667dc2e7a2b195dc481c5ae9fae9a8860f.png" src="../_images/936ccd5a4ee690480338a93d4aa979667dc2e7a2b195dc481c5ae9fae9a8860f.png" />
+<img alt="../_images/c5d5c1e0e4da1e50f11841e57b86c357dcb4ad6ed996f3c8ae8e54f89624d40a.png" src="../_images/c5d5c1e0e4da1e50f11841e57b86c357dcb4ad6ed996f3c8ae8e54f89624d40a.png" />
+<img alt="../_images/370e75fdf399442eb5ddb9b7510a7169f59822c8b54edda501bb34b69f413be3.png" src="../_images/370e75fdf399442eb5ddb9b7510a7169f59822c8b54edda501bb34b69f413be3.png" />
 <img alt="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" src="../_images/cc6f60fe9e7eda966dc737d6889467fe7996f8c6d4c18384a766d07e21e6457e.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/9ecc0a25f9ca77139a09091f1aaa621e777780cbffbbbc4c13d46544ee99a68b.png" src="../_images/9ecc0a25f9ca77139a09091f1aaa621e777780cbffbbbc4c13d46544ee99a68b.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/a602e2c9f3fc92fdd2748e3b7724cf2aa876fc564972592d47befa4f4027d5ff.png" src="../_images/a602e2c9f3fc92fdd2748e3b7724cf2aa876fc564972592d47befa4f4027d5ff.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
-<img alt="../_images/e43935a11eccb8b773439a872e08c10a19527d7a43d746cbdef8e87e96367d53.png" src="../_images/e43935a11eccb8b773439a872e08c10a19527d7a43d746cbdef8e87e96367d53.png" />
-<img alt="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" src="../_images/b2ac6588afb22f31a26a44168ffe79fa051910affb6b503c3041493017f02087.png" />
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -1598,17 +1580,8 @@ For goal 1000 mean money won:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Analysis when the goal is to win 10 units</p>
+        <p class="prev-next-title">Martingale simulation</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../conclusion.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1625,36 +1598,35 @@ For goal 1000 mean money won:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Starting bet = 1, Allowed money lost = -10</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-1-allowed-money-lost-10">Starting bet = 1, Allowed money lost = -10</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Analysis when the goal is to win 1000 units</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -1678,7 +1650,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Analysis when the goal is to win 10 units &#8212; Roulette simulator</title>
+    <title>Fibonacci strategy &#8212; Roulette simulator</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/fibonacci_roulette_simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Analysis when the goal is to win 10 units" href="labouchere_simulation.html" />
-    <link rel="prev" title="Starting bet = 1, Allowed money lost = -10" href="dalembert_simulation.html" />
+    <link rel="next" title="Labouchere simulation" href="labouchere_simulation.html" />
+    <link rel="prev" title="D’Alembert simulation" href="dalembert_simulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -385,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Analysis when the goal is to win 10 units</h1>
+    <h1>Fibonacci strategy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,12 +375,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -411,7 +390,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="fibonacci-strategy">
+<h1>Fibonacci strategy<a class="headerlink" href="#fibonacci-strategy" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -449,6 +430,9 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The Fibonacci roulette strategy uses the Fibonacci sequence of numbers, named after the Italian mathematician who went by that name, to determine your next stake:</p>
+<p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, etc.</p>
+<p>In line with the sequence, each stake is the sum of the two stakes before. With each loss, you would progress to the next number in the sequence, and for each win you would go back two places, or back to the start if you haven’t progressed that far. As you can’t start betting from 0, you’d start from a ratio of 1 and continue from there.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci_betting</span><span class="p">(</span><span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">):</span>
@@ -468,77 +452,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">money_histories</span> <span class="o">=</span> <span class="n">simulate_different_goal_money</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                     <span class="n">betting_type</span> <span class="o">=</span> <span class="n">fibonacci_betting</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                     <span class="n">goal_money_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                     <span class="n">number_histories</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\simulations_core.py:30,</span> in <span class="ni">simulate_different_goal_money</span><span class="nt">(betting_type, goal_money_list, number_histories, money_limit, start_bet)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="k">for</span> <span class="n">goal</span> <span class="ow">in</span> <span class="n">goal_money_list</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_histories</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">30</span>         <span class="n">money_histories</span><span class="p">[</span><span class="n">goal</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">betting_type</span><span class="p">(</span><span class="n">goal</span><span class="p">,</span>  <span class="n">start_bet</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">return</span> <span class="n">money_histories</span>
-
-<span class="nn">Cell In[4], line 2,</span> in <span class="ni">fibonacci_betting</span><span class="nt">(goal_money_won, bet, money_limit)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">fibonacci_betting</span><span class="p">(</span><span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="n">goal_money_betting_even_bet</span><span class="p">(</span><span class="n">roulette</span><span class="p">,</span> <span class="n">goal_money_won</span><span class="p">,</span> <span class="n">bet</span><span class="p">,</span> <span class="n">transformation_on_loss</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                         <span class="n">transformation_on_win</span><span class="p">,</span> <span class="n">money_limit</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\simulations_core.py:15,</span> in <span class="ni">goal_money_betting_even_bet</span><span class="nt">(roulette, goal_money_won, start_bet_amount, transformation_loss, transformation_win, money_limit)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="k">return</span> <span class="n">money_history</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">prev_money</span> <span class="o">=</span> <span class="n">money</span> 
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">money</span> <span class="o">+=</span> <span class="n">roulette</span><span class="o">.</span><span class="n">make_even_bet</span><span class="p">(</span><span class="n">bet_amount</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">money_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">bet_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bet_amount</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\roulette.py:25,</span> in <span class="ni">Roulette.make_even_bet</span><span class="nt">(self, bet_amount)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">def</span> <span class="nf">make_even_bet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bet_amount</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calculate_bet</span><span class="p">(</span><span class="n">bet_amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_NUMBER</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\roulette.py:39,</span> in <span class="ni">Roulette.__calculate_bet</span><span class="nt">(self, bet_amount, num_betting_fields)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="k">def</span> <span class="nf">__calculate_bet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bet_amount</span><span class="p">,</span> <span class="n">num_betting_fields</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd">         Function that makes a bet and returns the amount of money won or</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd">         lost, if you lose a bet it returns a negative number</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">39</span>     <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_win</span><span class="p">(</span><span class="n">num_betting_fields</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">return</span> <span class="n">bet_amount</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bet_coefficient</span><span class="p">(</span><span class="n">num_betting_fields</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\roulette.py:12,</span> in <span class="ni">Roulette.spin</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">def</span> <span class="nf">spin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MIN_NUMBER</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_NUMBER</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\random.py:362,</span> in <span class="ni">Random.randint</span><span class="nt">(self, a, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">def</span> <span class="nf">randint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return random integer in range [a, b], including both end points.</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">362</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\random.py:284,</span> in <span class="ni">Random.randrange</span><span class="nt">(self, start, stop, step)</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="c1">## -------------------- integer methods  -------------------</span>
-<span class="ne">--&gt; </span><span class="mi">284</span> <span class="k">def</span> <span class="nf">randrange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">_ONE</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Choose a random item from range(stop) or range(start, stop[, step]).</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span><span class="sd">     Roughly equivalent to ``choice(range(start, stop, step))`` but</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span><span class="sd">     supports arbitrarily large ranges and is optimized for common cases.</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="c1"># This code is a bit messy to make it fast for the</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span>     <span class="c1"># common case while still doing adequate error checking.</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <section id="analysis-when-the-goal-is-to-win-10-units">
-<h1>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 10 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-10-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -581,7 +497,7 @@ document.write(`
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-100-units">
-<h1>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 100 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-100-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -624,7 +540,7 @@ document.write(`
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-500-units">
-<h1>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 500 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-500-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
@@ -667,7 +583,7 @@ document.write(`
 </div>
 </section>
 <section id="analysis-when-the-goal-is-to-win-1000-units">
-<h1>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h1>
+<h2>Analysis when the goal is to win 1000 units<a class="headerlink" href="#analysis-when-the-goal-is-to-win-1000-units" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -709,6 +625,7 @@ document.write(`
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -746,7 +663,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Starting bet = 1, Allowed money lost = -10</p>
+        <p class="prev-next-title">D’Alembert simulation</p>
       </div>
     </a>
     <a class="right-next"
@@ -754,7 +671,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Analysis when the goal is to win 10 units</p>
+        <p class="prev-next-title">Labouchere simulation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -773,12 +690,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analysis when the goal is to win 10 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-10-units">Analysis when the goal is to win 10 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -802,7 +718,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

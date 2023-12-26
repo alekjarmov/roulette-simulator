@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Simulating whether there was a gain at some point &#8212; Roulette simulator</title>
+    <title>Endless single betting &#8212; Roulette simulator</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/single_betting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Simulating whether there was a gain at some point" href="half_betting.html" />
-    <link rel="prev" title="Checking if the roulette wheel is fair" href="roulette_test.html" />
+    <link rel="next" title="Endless halfbetting" href="half_betting.html" />
+    <link rel="prev" title="Calculating the expected values depending on the number of selcted numbers" href="expected_values.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -385,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Simulating whether there was a gain at some point</h1>
+    <h1>Endless single betting</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,10 +375,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Simulating whether there was a gain at some point</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -409,7 +388,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="endless-single-betting">
+<h1>Endless single betting<a class="headerlink" href="#endless-single-betting" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -457,65 +438,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d7c3b9508fa897a2b847592a28d112a4b70d098bd2f64b9f6d0e414aa2b3d400.png" src="../_images/d7c3b9508fa897a2b847592a28d112a4b70d098bd2f64b9f6d0e414aa2b3d400.png" />
-<img alt="../_images/8885fa817630e4cdeffbdaef1e116227480f0ea1db40e9c2b2ffe4863aedff99.png" src="../_images/8885fa817630e4cdeffbdaef1e116227480f0ea1db40e9c2b2ffe4863aedff99.png" />
-<img alt="../_images/69a552ab11d520172cba1220b8fad953a3e10e395661916d58927bc27c1cca53.png" src="../_images/69a552ab11d520172cba1220b8fad953a3e10e395661916d58927bc27c1cca53.png" />
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Single half betting with betting_percentage </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">maximum_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\simulations_core.py:49,</span> in <span class="ni">get_mean_and_std_of_histories</span><span class="nt">(money_histories, goal)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_length</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="n">mean_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">([</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">]))</span>
-<span class="ne">---&gt; </span><span class="mi">49</span>     <span class="n">std_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stdev</span><span class="p">([</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">return</span> <span class="n">mean_list</span><span class="p">,</span> <span class="n">std_list</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:916,</span> in <span class="ni">stdev</span><span class="nt">(data, xbar)</span>
-<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">def</span> <span class="nf">stdev</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xbar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the square root of the sample variance.</span>
-<span class="g g-Whitespace">    </span><span class="mi">909</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span><span class="sd">     See ``variance`` for arguments and other details.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">916</span>     <span class="n">T</span><span class="p">,</span> <span class="n">ss</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">_ss</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">xbar</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">917</span>     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span>         <span class="k">raise</span> <span class="n">StatisticsError</span><span class="p">(</span><span class="s1">&#39;stdev requires at least two data points&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:227,</span> in <span class="ni">_ss</span><span class="nt">(data, c)</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">226</span>     <span class="n">types_add</span><span class="p">(</span><span class="n">typ</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">227</span>     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">_exact_ratio</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">228</span>         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span>         <span class="n">sx_partials</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">+=</span> <span class="n">n</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:287,</span> in <span class="ni">_exact_ratio</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;don&#39;t know how to coerce </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">287</span> <span class="k">def</span> <span class="nf">_exact_ratio</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return Real number x to exact (numerator, denominator) pair.</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="sd">     &gt;&gt;&gt; _exact_ratio(0.25)</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span><span class="sd">     x is expected to be an int, Fraction, Decimal or float.</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="c1"># XXX We should revisit whether using fractions to accumulate exact</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span>     <span class="c1"># ratios is the right way to go.</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span> 
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="c1"># This doesn&#39;t seem to have been problem in practice, but it is a</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>     <span class="c1"># potential pitfall.</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
+<img alt="../_images/3d5135db68b4bb25568fc3f395b37f3efcf13dc7449756d05c21cb80453c0e32.png" src="../_images/3d5135db68b4bb25568fc3f395b37f3efcf13dc7449756d05c21cb80453c0e32.png" />
+<img alt="../_images/88f767252f8d15748341f7e063d7ce6bbb89f7a125fbfb23976cff69132ed26d.png" src="../_images/88f767252f8d15748341f7e063d7ce6bbb89f7a125fbfb23976cff69132ed26d.png" />
+<img alt="../_images/92c428c75411933c73b4aedf97c5ea87ca7852cd4d53247489672e98d94c65a3.png" src="../_images/92c428c75411933c73b4aedf97c5ea87ca7852cd4d53247489672e98d94c65a3.png" />
+<img alt="../_images/7245a6c0fb925d8a8e2d44926fdb5992416c15c3600eabc0f89d7022d432030d.png" src="../_images/7245a6c0fb925d8a8e2d44926fdb5992416c15c3600eabc0f89d7022d432030d.png" />
+<img alt="../_images/924c856364b240cacdc3183e5d91d4beac1c9f807f9b22de5bf8ebd86a98c78e.png" src="../_images/924c856364b240cacdc3183e5d91d4beac1c9f807f9b22de5bf8ebd86a98c78e.png" />
+<img alt="../_images/8f0492b5b5daef56f42c357e07cc707b27d5b08137731fd50985de1744c24f5f.png" src="../_images/8f0492b5b5daef56f42c357e07cc707b27d5b08137731fd50985de1744c24f5f.png" />
+<img alt="../_images/8b94434482944e8f3f561cca5b0b65994400aad2051aca925d442b43640b9b90.png" src="../_images/8b94434482944e8f3f561cca5b0b65994400aad2051aca925d442b43640b9b90.png" />
+<img alt="../_images/dd69428aa5f2e119ef3d013dbdb80356bfbf2f669367416a63939a786307620e.png" src="../_images/dd69428aa5f2e119ef3d013dbdb80356bfbf2f669367416a63939a786307620e.png" />
+<img alt="../_images/1c7ffb5592bbccf73c00608897f27af567684ff4803ab471b99120c905f236a7.png" src="../_images/1c7ffb5592bbccf73c00608897f27af567684ff4803ab471b99120c905f236a7.png" />
+<img alt="../_images/c475ccf5f4525111e46f341d95ea7e56ba0045334e5837d142f170b11022c027.png" src="../_images/c475ccf5f4525111e46f341d95ea7e56ba0045334e5837d142f170b11022c027.png" />
 </div>
 </div>
 <section id="simulating-whether-there-was-a-gain-at-some-point">
-<h1>Simulating whether there was a gain at some point<a class="headerlink" href="#simulating-whether-there-was-a-gain-at-some-point" title="Permalink to this heading">#</a></h1>
+<h2>Simulating whether there was a gain at some point<a class="headerlink" href="#simulating-whether-there-was-a-gain-at-some-point" title="Permalink to this heading">#</a></h2>
 <p>What is checked is whether there was a point where the balance was greater than the initial balance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -533,12 +469,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b7ec1b5f9d352f26a9f5a2e14c6eed34ae5b543ed84654cefd23df30fbc9898f.png" src="../_images/b7ec1b5f9d352f26a9f5a2e14c6eed34ae5b543ed84654cefd23df30fbc9898f.png" />
+<img alt="../_images/09a89d161e8f37592f39ae74bfac0bbae1895782303854393ebe5e89096a9200.png" src="../_images/09a89d161e8f37592f39ae74bfac0bbae1895782303854393ebe5e89096a9200.png" />
 </div>
 </div>
 </section>
 <section id="simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">
-<h1>Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet<a class="headerlink" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet" title="Permalink to this heading">#</a></h1>
+<h2>Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet<a class="headerlink" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">bet_amount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -547,16 +483,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e89c1b231ba193897ce18b9904f66cb046846faae686c2111df0b4f2e718ea60.png" src="../_images/e89c1b231ba193897ce18b9904f66cb046846faae686c2111df0b4f2e718ea60.png" />
-<img alt="../_images/b984dd4e7eba7b4dc27c8cc9e4a0f3bef486faed01a33cf5ab9a008f8587b53a.png" src="../_images/b984dd4e7eba7b4dc27c8cc9e4a0f3bef486faed01a33cf5ab9a008f8587b53a.png" />
-<img alt="../_images/3b033a5c29fb3c9876663e6034f6ad2bc51e372a04cc1c9e71aba7740e4c9401.png" src="../_images/3b033a5c29fb3c9876663e6034f6ad2bc51e372a04cc1c9e71aba7740e4c9401.png" />
-<img alt="../_images/1ea619c3d8e8b6b91259dc6d56c2dc43f035a7e01661a76c06847fc2b9f965a4.png" src="../_images/1ea619c3d8e8b6b91259dc6d56c2dc43f035a7e01661a76c06847fc2b9f965a4.png" />
-<img alt="../_images/3f83f96f0b92808e3440f178f6cd928726ae354757932269d43213435e7eaa78.png" src="../_images/3f83f96f0b92808e3440f178f6cd928726ae354757932269d43213435e7eaa78.png" />
-<img alt="../_images/2fa7bbf9c60dcf8364126efa5bdc80fde82a2a8eac3636a3b9bada646f46bbb8.png" src="../_images/2fa7bbf9c60dcf8364126efa5bdc80fde82a2a8eac3636a3b9bada646f46bbb8.png" />
-<img alt="../_images/61e044e82199528e6af6aee4949fbc1230afc49e5b24fae60a36d4c5fa8f4009.png" src="../_images/61e044e82199528e6af6aee4949fbc1230afc49e5b24fae60a36d4c5fa8f4009.png" />
-<img alt="../_images/d60280e72883bca62876d910f912ed695d28d2ac8a9f1cb2832452ea52f2b72d.png" src="../_images/d60280e72883bca62876d910f912ed695d28d2ac8a9f1cb2832452ea52f2b72d.png" />
+<img alt="../_images/42322821fd3411e8cdf15141923ebfaff050d58e0cb391cc0c65533c53404939.png" src="../_images/42322821fd3411e8cdf15141923ebfaff050d58e0cb391cc0c65533c53404939.png" />
+<img alt="../_images/8bb8760a5eb5f53df2e2517a11f774755b855506d52c26da3d3c9b996ab9a1cf.png" src="../_images/8bb8760a5eb5f53df2e2517a11f774755b855506d52c26da3d3c9b996ab9a1cf.png" />
+<img alt="../_images/3c755eda795058d96e475d2ebf99ac003a199ad45ecdf5141ffce32b94d1d23d.png" src="../_images/3c755eda795058d96e475d2ebf99ac003a199ad45ecdf5141ffce32b94d1d23d.png" />
+<img alt="../_images/b9fa79c42871fe0232b9f05bc034f8aec43b58166da3be4085a7fb913a0aee89.png" src="../_images/b9fa79c42871fe0232b9f05bc034f8aec43b58166da3be4085a7fb913a0aee89.png" />
+<img alt="../_images/86b40d15d921ef31476259fedaaa6aa2ea2a4ba996b5fb0bff48a3e5057194ec.png" src="../_images/86b40d15d921ef31476259fedaaa6aa2ea2a4ba996b5fb0bff48a3e5057194ec.png" />
+<img alt="../_images/2e2441fb1f1cfddb01e10d14a37c072d0ef39f6584a9a47d76462025cb5083a4.png" src="../_images/2e2441fb1f1cfddb01e10d14a37c072d0ef39f6584a9a47d76462025cb5083a4.png" />
+<img alt="../_images/78b1590d18faf2936bcb3fcbc8f62ad27c0c981c75fdec4a4b93aa0e606e7c35.png" src="../_images/78b1590d18faf2936bcb3fcbc8f62ad27c0c981c75fdec4a4b93aa0e606e7c35.png" />
+<img alt="../_images/0feddd88fb9588e99141a6bf9616d48555ebfa6ca9ad8cc276e44ee9420e33dc.png" src="../_images/0feddd88fb9588e99141a6bf9616d48555ebfa6ca9ad8cc276e44ee9420e33dc.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -590,12 +527,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="roulette_test.html"
+       href="expected_values.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Checking if the roulette wheel is fair</p>
+        <p class="prev-next-title">Calculating the expected values depending on the number of selcted numbers</p>
       </div>
     </a>
     <a class="right-next"
@@ -603,7 +540,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simulating whether there was a gain at some point</p>
+        <p class="prev-next-title">Endless halfbetting</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -622,10 +559,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Simulating whether there was a gain at some point</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -649,7 +585,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

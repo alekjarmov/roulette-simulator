@@ -50,9 +50,3 @@ class Roulette:
     def is_win(num_betting_fields, spin_result):
         return spin_result in range(1, num_betting_fields + 1)
 
-
-# roulette = Roulette(34)
-# money = 11000
-# for i in range(10):
-#     money += roulette.make_bet(1000)
-#     print(money)

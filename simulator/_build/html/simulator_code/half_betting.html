@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Simulating whether there was a gain at some point &#8212; Roulette simulator</title>
+    <title>Endless halfbetting &#8212; Roulette simulator</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/half_betting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Starting bet = 1, Allowed money lost = -35" href="andrucci_simulation.html" />
-    <link rel="prev" title="Simulating whether there was a gain at some point" href="single_betting.html" />
+    <link rel="next" title="Andrucci simulation" href="andrucci_simulation.html" />
+    <link rel="prev" title="Endless single betting" href="single_betting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,42 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -385,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Simulating whether there was a gain at some point</h1>
+    <h1>Endless halfbetting</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,10 +375,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Simulating whether there was a gain at some point</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -409,7 +388,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="endless-halfbetting">
+<h1>Endless halfbetting<a class="headerlink" href="#endless-halfbetting" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -460,62 +441,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cc8bc82577dbb07155e4554af6d0bdbf0c91562d50742eb9c3c74287156188a5.png" src="../_images/cc8bc82577dbb07155e4554af6d0bdbf0c91562d50742eb9c3c74287156188a5.png" />
-<img alt="../_images/a4e86b9670f9df35069fee63060bb19b8e0c5d8ba11f6b88d4bbd4d6adf9da4b.png" src="../_images/a4e86b9670f9df35069fee63060bb19b8e0c5d8ba11f6b88d4bbd4d6adf9da4b.png" />
-<img alt="../_images/c387c00ca83267289b1780e0372cad7dbb2e6dc2dcbda5880f7f8804a1b64b5b.png" src="../_images/c387c00ca83267289b1780e0372cad7dbb2e6dc2dcbda5880f7f8804a1b64b5b.png" />
-<img alt="../_images/30cfdbf5cf42ce2b9537fc73c31b79c9d0b9a6536d7ac40c027f0fe3e4131133.png" src="../_images/30cfdbf5cf42ce2b9537fc73c31b79c9d0b9a6536d7ac40c027f0fe3e4131133.png" />
-<img alt="../_images/0ba284e8f0b3f712f220f7610d4ae53068abf6a68b6e3dc7a46724099bd1940a.png" src="../_images/0ba284e8f0b3f712f220f7610d4ae53068abf6a68b6e3dc7a46724099bd1940a.png" />
-<img alt="../_images/5516d51df7c437a3ec2b3353bfc0835e16b2ab0621e948e299230c2127180271.png" src="../_images/5516d51df7c437a3ec2b3353bfc0835e16b2ab0621e948e299230c2127180271.png" />
-<img alt="../_images/dc6d93a211d63210280faf81f611208ede07ba8a4baae5bb635f7e1e7e378fe6.png" src="../_images/dc6d93a211d63210280faf81f611208ede07ba8a4baae5bb635f7e1e7e378fe6.png" />
-<img alt="../_images/954df4aedff04209426bd26adec964faeb50eedc7f0f19aedb4b38b0a2aab696.png" src="../_images/954df4aedff04209426bd26adec964faeb50eedc7f0f19aedb4b38b0a2aab696.png" />
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Endless half betting with betting_percentage </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">maximum_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">File ~\Documents\Faks\modeliranje i simulacija\roulette-simulator\simulator\simulator_code\simulations_core.py:48,</span> in <span class="ni">get_mean_and_std_of_histories</span><span class="nt">(money_histories, goal)</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="n">std_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_length</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">48</span>     <span class="n">mean_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean</span><span class="p">([</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>     <span class="n">std_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stdev</span><span class="p">([</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">return</span> <span class="n">mean_list</span><span class="p">,</span> <span class="n">std_list</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:430,</span> in <span class="ni">mean</span><span class="nt">(data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the sample arithmetic mean of data.</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span><span class="sd">     &gt;&gt;&gt; mean([1, 2, 3, 4, 4])</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">428</span><span class="sd">     If ``data`` is empty, StatisticsError will be raised.</span>
-<span class="g g-Whitespace">    </span><span class="mi">429</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">430</span>     <span class="n">T</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">_sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">431</span>     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">432</span>         <span class="k">raise</span> <span class="n">StatisticsError</span><span class="p">(</span><span class="s1">&#39;mean requires at least one data point&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:193,</span> in <span class="ni">_sum</span><span class="nt">(data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="n">types_add</span><span class="p">(</span><span class="n">typ</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">193</span>     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">_exact_ratio</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span>         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span>         <span class="n">partials</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">partials_get</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span>
-
-<span class="nn">File ~\anaconda3\Lib\statistics.py:318,</span> in <span class="ni">_exact_ratio</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="c1"># XXX We should revisit whether using fractions to accumulate exact</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="c1"># ratios is the right way to go.</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span> 
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="c1"># This doesn&#39;t seem to have been problem in practice, but it is a</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="c1"># potential pitfall.</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">318</span>     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">pass</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
+<img alt="../_images/3342152df79a56199ee2e2cce768c12da42ce28e9258b37f1d32ee03ccfe7a9d.png" src="../_images/3342152df79a56199ee2e2cce768c12da42ce28e9258b37f1d32ee03ccfe7a9d.png" />
+<img alt="../_images/689c8e79e16cf063db72f9a083eb949754ce4d6079fa6493d01e29e3ed5c660f.png" src="../_images/689c8e79e16cf063db72f9a083eb949754ce4d6079fa6493d01e29e3ed5c660f.png" />
+<img alt="../_images/8d72ffe20d2b4075b6c6c987c34a094970ca5a281e29f9fea68b6a4c6c8f7dbc.png" src="../_images/8d72ffe20d2b4075b6c6c987c34a094970ca5a281e29f9fea68b6a4c6c8f7dbc.png" />
+<img alt="../_images/763736aa312fc6943348345b76d41a436464cc5c0f9e6312910237ae635a65e7.png" src="../_images/763736aa312fc6943348345b76d41a436464cc5c0f9e6312910237ae635a65e7.png" />
+<img alt="../_images/03c28cea35cef92eb6a67499e557b5b4b3089eb97eb0be727963bbf1562ac918.png" src="../_images/03c28cea35cef92eb6a67499e557b5b4b3089eb97eb0be727963bbf1562ac918.png" />
+<img alt="../_images/6987dc300f68d61b05976fc4fe65982af9f034d9eafe38ce0275c297d1a03259.png" src="../_images/6987dc300f68d61b05976fc4fe65982af9f034d9eafe38ce0275c297d1a03259.png" />
+<img alt="../_images/fa0334bb0bd758ed90208bb35986c9dcb60498aeab1d62bad9404d0f7a76d7eb.png" src="../_images/fa0334bb0bd758ed90208bb35986c9dcb60498aeab1d62bad9404d0f7a76d7eb.png" />
+<img alt="../_images/0e49b74ba5320742e28a96cca38dcec966c9024070082b36a37d4c768373e9c5.png" src="../_images/0e49b74ba5320742e28a96cca38dcec966c9024070082b36a37d4c768373e9c5.png" />
+<img alt="../_images/1b2c26785ad41c7868e972633dec714f15ee5a7fb6d428df91a3eadc706e9916.png" src="../_images/1b2c26785ad41c7868e972633dec714f15ee5a7fb6d428df91a3eadc706e9916.png" />
+<img alt="../_images/fec096b908caa3a76004eb03e5893ba0365b0fce7763766d8149a094515ba202.png" src="../_images/fec096b908caa3a76004eb03e5893ba0365b0fce7763766d8149a094515ba202.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -580,7 +515,7 @@ document.write(`
 </div>
 </div>
 <section id="simulating-whether-there-was-a-gain-at-some-point">
-<h1>Simulating whether there was a gain at some point<a class="headerlink" href="#simulating-whether-there-was-a-gain-at-some-point" title="Permalink to this heading">#</a></h1>
+<h2>Simulating whether there was a gain at some point<a class="headerlink" href="#simulating-whether-there-was-a-gain-at-some-point" title="Permalink to this heading">#</a></h2>
 <p>What is checked is whether there was a point where the balance was greater than the initial balance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -613,7 +548,7 @@ document.write(`
 </div>
 </section>
 <section id="simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">
-<h1>Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet<a class="headerlink" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet" title="Permalink to this heading">#</a></h1>
+<h2>Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet<a class="headerlink" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">bet_amount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -632,6 +567,7 @@ document.write(`
 <img alt="../_images/bdadc813fa57d51bb46d24db6f6cb582c5c76e090ed3f24a1220670e7c404cf4.png" src="../_images/bdadc813fa57d51bb46d24db6f6cb582c5c76e090ed3f24a1220670e7c404cf4.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -670,7 +606,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simulating whether there was a gain at some point</p>
+        <p class="prev-next-title">Endless single betting</p>
       </div>
     </a>
     <a class="right-next"
@@ -678,7 +614,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Starting bet = 1, Allowed money lost = -35</p>
+        <p class="prev-next-title">Andrucci simulation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -697,10 +633,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Simulating whether there was a gain at some point</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -724,7 +659,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

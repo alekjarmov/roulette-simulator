@@ -1,3 +1,5 @@
+# Core functions
+
 import matplotlib.pyplot as plt  # type: ignore
 import math
 

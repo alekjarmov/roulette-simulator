@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to your Jupyter Book &#8212; Roulette simulator</title>
+    <title>Roulette simulator &#8212; Roulette simulator</title>
   
   
   
@@ -163,42 +163,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Welcome to your Jupyter Book
+                    Roulette simulator
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="simulator_code/roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html">Simulating whether there was a gain at some point</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 
     </div>
@@ -371,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -382,11 +364,22 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome to your Jupyter Book</h1>
+    <h1>Roulette simulator</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-and-simulation">Modeling and simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-by-alek-jarmov-206012-and-ana-marija-atanasovska-206004">Project by Alek Jarmov 206012 and Ana Marija Atanasovska 206004</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -396,48 +389,30 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-your-jupyter-book">
-<h1>Welcome to your Jupyter Book<a class="headerlink" href="#welcome-to-your-jupyter-book" title="Permalink to this heading">#</a></h1>
-<p>This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a> for more information.</p>
-<p>Check out the content pages bundled with this sample book to see more.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="roulette-simulator">
+<h1>Roulette simulator<a class="headerlink" href="#roulette-simulator" title="Permalink to this heading">#</a></h1>
+<section id="modeling-and-simulation">
+<h2>Modeling and simulation<a class="headerlink" href="#modeling-and-simulation" title="Permalink to this heading">#</a></h2>
+<section id="project-by-alek-jarmov-206012-and-ana-marija-atanasovska-206004">
+<h3>Project by Alek Jarmov 206012 and Ana Marija Atanasovska 206004<a class="headerlink" href="#project-by-alek-jarmov-206012-and-ana-marija-atanasovska-206004" title="Permalink to this heading">#</a></h3>
+<p>Various roulette simulations for different betting strategies and other analysis.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="simulator_code/roulette_test.html">Checking if the roulette wheel is fair</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html">Simulating whether there was a gain at some point</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html">Simulating whether there was a gain at some point</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html">Starting bet = 1, Allowed money lost = -35</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html#starting-bet-goal-allowed-money-lost-35-goal">Starting bet = goal, Allowed money lost = -35*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html">Analysis when the goal is to win 10 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html">Analysis when the goal is to win 10 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html">Analysis when the goal is to win 10 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html#analysis-when-the-goal-is-to-win-100-units">Analysis when the goal is to win 100 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html#analysis-when-the-goal-is-to-win-500-units">Analysis when the goal is to win 500 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html#analysis-when-the-goal-is-to-win-1000-units">Analysis when the goal is to win 1000 units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html">Starting bet = 1, Allowed money lost = -10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html#starting-bet-goal-allowed-money-lost-10-goal">Starting bet = goal, Allowed money lost = -10*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html#starting-bet-goal-allowed-money-lost-20-goal">Starting bet = goal, Allowed money lost = -20*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html#starting-bet-goal-allowed-money-lost-30-goal">Starting bet = goal, Allowed money lost = -30*goal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/paroli_simulation.html">Paroli simulation</a></li>
 </ul>
 </div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -486,6 +461,23 @@ It does not go in-depth into any particular topic - check out <a class="referenc
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-and-simulation">Modeling and simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-by-alek-jarmov-206012-and-ana-marija-atanasovska-206004">Project by Alek Jarmov 206012 and Ana Marija Atanasovska 206004</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -505,7 +497,7 @@ By Ana Marija Atanasovska & Alek Jarmov
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
