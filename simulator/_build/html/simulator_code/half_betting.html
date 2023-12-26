@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Endless halfbetting &#8212; Roulette simulator</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'simulator_code/half_betting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Andrucci simulation" href="andrucci_simulation.html" />
+    <link rel="prev" title="Endless single betting" href="single_betting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Roulette simulator - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Roulette simulator - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Roulette simulator
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="roulette_test.html">Checking if the roulette wheel is fair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_betting.html">Endless single betting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Endless halfbetting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="andrucci_simulation.html">Andrucci simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dalembert_simulation.html">D’Alembert simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fibonacci_roulette_simulation.html">Fibonacci strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labouchere_simulation.html">Labouchere simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="martingale_simulation.html">Martingale simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paroli_simulation.html">Paroli simulation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/alekjarmov/roulette-simulator" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/alekjarmov/roulette-simulator/issues/new?title=Issue%20on%20page%20%2Fsimulator_code/half_betting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/simulator_code/half_betting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Endless halfbetting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="endless-halfbetting">
+<h1>Endless halfbetting<a class="headerlink" href="#endless-halfbetting" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">roulette</span> <span class="kn">import</span> <span class="n">Roulette</span>
+<span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simulations_core</span> <span class="kn">import</span> <span class="n">get_mean_and_std_of_histories</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  
+<span class="n">roulette</span> <span class="o">=</span> <span class="n">Roulette</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">endless_half_betting</span><span class="p">(</span><span class="n">starting_money</span><span class="p">,</span> <span class="n">bet_amount</span><span class="p">):</span>
+    <span class="n">money</span> <span class="o">=</span> <span class="n">starting_money</span>
+    <span class="n">money_points</span> <span class="o">=</span> <span class="p">[</span><span class="n">money</span><span class="p">]</span>
+
+    <span class="k">while</span> <span class="n">money</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">money</span> <span class="o">-</span> <span class="n">bet_amount</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">money</span> <span class="o">+=</span> <span class="n">roulette</span><span class="o">.</span><span class="n">make_even_bet</span><span class="p">(</span><span class="n">bet_amount</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">money</span> <span class="o">+=</span> <span class="n">roulette</span><span class="o">.</span><span class="n">make_even_bet</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
+        <span class="n">money_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">money_points</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_histories</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">money_histories</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">bet_percentage</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">money_histories</span><span class="p">[</span><span class="n">bet_percentage</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">endless_half_betting</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">bet_percentage</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_money_list</span> <span class="o">=</span> <span class="n">get_mean_and_std_of_histories</span><span class="p">(</span><span class="n">money_histories</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">plot_money_history</span><span class="p">(</span><span class="n">mean_money_list</span><span class="p">,</span> <span class="n">std_dev</span><span class="o">=</span><span class="n">std_money_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Endless half betting with betting_percentage </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">maximum_line</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3342152df79a56199ee2e2cce768c12da42ce28e9258b37f1d32ee03ccfe7a9d.png" src="../_images/3342152df79a56199ee2e2cce768c12da42ce28e9258b37f1d32ee03ccfe7a9d.png" />
+<img alt="../_images/689c8e79e16cf063db72f9a083eb949754ce4d6079fa6493d01e29e3ed5c660f.png" src="../_images/689c8e79e16cf063db72f9a083eb949754ce4d6079fa6493d01e29e3ed5c660f.png" />
+<img alt="../_images/8d72ffe20d2b4075b6c6c987c34a094970ca5a281e29f9fea68b6a4c6c8f7dbc.png" src="../_images/8d72ffe20d2b4075b6c6c987c34a094970ca5a281e29f9fea68b6a4c6c8f7dbc.png" />
+<img alt="../_images/763736aa312fc6943348345b76d41a436464cc5c0f9e6312910237ae635a65e7.png" src="../_images/763736aa312fc6943348345b76d41a436464cc5c0f9e6312910237ae635a65e7.png" />
+<img alt="../_images/03c28cea35cef92eb6a67499e557b5b4b3089eb97eb0be727963bbf1562ac918.png" src="../_images/03c28cea35cef92eb6a67499e557b5b4b3089eb97eb0be727963bbf1562ac918.png" />
+<img alt="../_images/6987dc300f68d61b05976fc4fe65982af9f034d9eafe38ce0275c297d1a03259.png" src="../_images/6987dc300f68d61b05976fc4fe65982af9f034d9eafe38ce0275c297d1a03259.png" />
+<img alt="../_images/fa0334bb0bd758ed90208bb35986c9dcb60498aeab1d62bad9404d0f7a76d7eb.png" src="../_images/fa0334bb0bd758ed90208bb35986c9dcb60498aeab1d62bad9404d0f7a76d7eb.png" />
+<img alt="../_images/0e49b74ba5320742e28a96cca38dcec966c9024070082b36a37d4c768373e9c5.png" src="../_images/0e49b74ba5320742e28a96cca38dcec966c9024070082b36a37d4c768373e9c5.png" />
+<img alt="../_images/1b2c26785ad41c7868e972633dec714f15ee5a7fb6d428df91a3eadc706e9916.png" src="../_images/1b2c26785ad41c7868e972633dec714f15ee5a7fb6d428df91a3eadc706e9916.png" />
+<img alt="../_images/fec096b908caa3a76004eb03e5893ba0365b0fce7763766d8149a094515ba202.png" src="../_images/fec096b908caa3a76004eb03e5893ba0365b0fce7763766d8149a094515ba202.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">money_history</span> <span class="o">=</span> <span class="n">money_histories</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">plot_money_history</span><span class="p">(</span><span class="n">money_history</span><span class="p">,</span> <span class="n">change_colors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7649bfc1c1bd9b0f5f8f404be09dcdb80d65dcff04da40bae355448d587253b5.png" src="../_images/7649bfc1c1bd9b0f5f8f404be09dcdb80d65dcff04da40bae355448d587253b5.png" />
+<img alt="../_images/ae57550d34b5aa437380de21a17f167a8f8234044f24b62609bf494fe87ffc39.png" src="../_images/ae57550d34b5aa437380de21a17f167a8f8234044f24b62609bf494fe87ffc39.png" />
+<img alt="../_images/8fa6251b54b3566febc27189cccd18648928d6ae424a1d0b02ff25c158e649f1.png" src="../_images/8fa6251b54b3566febc27189cccd18648928d6ae424a1d0b02ff25c158e649f1.png" />
+<img alt="../_images/3801d3ae8b38c7e51ca9f63dd623db4b7ac514c6d408cf7bed0289371c686de2.png" src="../_images/3801d3ae8b38c7e51ca9f63dd623db4b7ac514c6d408cf7bed0289371c686de2.png" />
+<img alt="../_images/7900cfa0630459c1c658c8758434d5404dbfd485b75d6668c3507fb3b1971513.png" src="../_images/7900cfa0630459c1c658c8758434d5404dbfd485b75d6668c3507fb3b1971513.png" />
+<img alt="../_images/284e980cf92ea34b58c47e65d22a4c5b09c35aad3964938999c3799df5e51d1a.png" src="../_images/284e980cf92ea34b58c47e65d22a4c5b09c35aad3964938999c3799df5e51d1a.png" />
+<img alt="../_images/a306fc42207f7888d3d2e60cfa0c0de3cb09f55364bd51cbe5d1717d3b768ed7.png" src="../_images/a306fc42207f7888d3d2e60cfa0c0de3cb09f55364bd51cbe5d1717d3b768ed7.png" />
+<img alt="../_images/5a41a134cfe48501420af366d5c7137e819bc8f92cda0ff427786a5266f6f54b.png" src="../_images/5a41a134cfe48501420af366d5c7137e819bc8f92cda0ff427786a5266f6f54b.png" />
+<img alt="../_images/242ecc86b01afd61398d68c2c66acdb74f3681e686df729436b4d67f0dc6396c.png" src="../_images/242ecc86b01afd61398d68c2c66acdb74f3681e686df729436b4d67f0dc6396c.png" />
+<img alt="../_images/abb9396b91b8d42a720486fcd991a136b9bef14c02c41895098e7d69f486c37d.png" src="../_images/abb9396b91b8d42a720486fcd991a136b9bef14c02c41895098e7d69f486c37d.png" />
+<img alt="../_images/14c5b46ba13a9263c93fc85b31547b82f07fdef8c41a225722c591c7b3d6f1e3.png" src="../_images/14c5b46ba13a9263c93fc85b31547b82f07fdef8c41a225722c591c7b3d6f1e3.png" />
+<img alt="../_images/e67ac2125a959ab4de98915188fe4560176ec01c29a45ef3e6ffda9a46fce7f1.png" src="../_images/e67ac2125a959ab4de98915188fe4560176ec01c29a45ef3e6ffda9a46fce7f1.png" />
+<img alt="../_images/07f810e0f136a8cebecca720a7d70e777acf8d82a6c1d32bbebc71d73021cb8d.png" src="../_images/07f810e0f136a8cebecca720a7d70e777acf8d82a6c1d32bbebc71d73021cb8d.png" />
+<img alt="../_images/579f7738838d63fec9351f9bdafe3c2d50e06f242fa0273672e4874b72e64a7e.png" src="../_images/579f7738838d63fec9351f9bdafe3c2d50e06f242fa0273672e4874b72e64a7e.png" />
+<img alt="../_images/a39bc3aade17e7a1bb2c1293463ec903ed188daa5f3214f23b13440a05f25c3e.png" src="../_images/a39bc3aade17e7a1bb2c1293463ec903ed188daa5f3214f23b13440a05f25c3e.png" />
+<img alt="../_images/94aff4c47ba893b45a8db5b3c9a47a00eab9b14299288dd092d760e599a9513d.png" src="../_images/94aff4c47ba893b45a8db5b3c9a47a00eab9b14299288dd092d760e599a9513d.png" />
+<img alt="../_images/12e878d06b7a9db99f61f9445b1184f2f610268d872e1f8f07c876bd79a23a38.png" src="../_images/12e878d06b7a9db99f61f9445b1184f2f610268d872e1f8f07c876bd79a23a38.png" />
+<img alt="../_images/ef856987b3812ad7f7651307b5ef529d1fe758a883dafb8f22ab6b387dfc9ff9.png" src="../_images/ef856987b3812ad7f7651307b5ef529d1fe758a883dafb8f22ab6b387dfc9ff9.png" />
+<img alt="../_images/6d827240e5031ead6117bd792b7ebb5b31978a9f703621926af20b60ad61f914.png" src="../_images/6d827240e5031ead6117bd792b7ebb5b31978a9f703621926af20b60ad61f914.png" />
+<img alt="../_images/a63be9f9e28363c3d8beb097f30c096b697537037a4a697c285dffc87ef7c70b.png" src="../_images/a63be9f9e28363c3d8beb097f30c096b697537037a4a697c285dffc87ef7c70b.png" />
+<img alt="../_images/e8ec48ab2141e7fb4181ce96334658343ffe1a7150fcdc8827672ef32e5ffc66.png" src="../_images/e8ec48ab2141e7fb4181ce96334658343ffe1a7150fcdc8827672ef32e5ffc66.png" />
+<img alt="../_images/c81d862d1b16746060a568b0b96461866e31be38f7d7d1778b3ce9d56c63dca2.png" src="../_images/c81d862d1b16746060a568b0b96461866e31be38f7d7d1778b3ce9d56c63dca2.png" />
+<img alt="../_images/93236e8000947048ff48a8c2ce29bb20abe424cf6a75436e9a98b97fe7d84c51.png" src="../_images/93236e8000947048ff48a8c2ce29bb20abe424cf6a75436e9a98b97fe7d84c51.png" />
+<img alt="../_images/333ece6b9fd872bf944c7e53f4d02bedddc0f90bdbc75000af0a8063a5a9d07e.png" src="../_images/333ece6b9fd872bf944c7e53f4d02bedddc0f90bdbc75000af0a8063a5a9d07e.png" />
+<img alt="../_images/e9c1f8726a54f3ba5e81e11cb43f00dad61261f0f0b99528a53eadf0d817d735.png" src="../_images/e9c1f8726a54f3ba5e81e11cb43f00dad61261f0f0b99528a53eadf0d817d735.png" />
+<img alt="../_images/f2790e6d27564de0f4837c794a28e5aadccf5b67ed2f09d11cc7dabf1797def1.png" src="../_images/f2790e6d27564de0f4837c794a28e5aadccf5b67ed2f09d11cc7dabf1797def1.png" />
+<img alt="../_images/9118bbae32f4be6472b8e47eb716af2566b8adf50b34ffcae1b89948d643da07.png" src="../_images/9118bbae32f4be6472b8e47eb716af2566b8adf50b34ffcae1b89948d643da07.png" />
+<img alt="../_images/66eaa591cc1136bae63188f20b6f06ba200e9f23d1aa68234295ce0c9b34b586.png" src="../_images/66eaa591cc1136bae63188f20b6f06ba200e9f23d1aa68234295ce0c9b34b586.png" />
+<img alt="../_images/ea771f206be5433805833a04211518a091e413f665511662b05adb53eac0c4c3.png" src="../_images/ea771f206be5433805833a04211518a091e413f665511662b05adb53eac0c4c3.png" />
+<img alt="../_images/2c4c113a409c39d1e38bedb0e60f23ab9d63ca99c11e7af1ca3cd9ef20746db4.png" src="../_images/2c4c113a409c39d1e38bedb0e60f23ab9d63ca99c11e7af1ca3cd9ef20746db4.png" />
+<img alt="../_images/b8530c6127b056bb9045564db8f7b32799641100c07d362ad0a498320bf71edb.png" src="../_images/b8530c6127b056bb9045564db8f7b32799641100c07d362ad0a498320bf71edb.png" />
+<img alt="../_images/16e56640c982064be439c7ea2b34bc4b19c70aa10c5ef5a8768f17cea6eb778c.png" src="../_images/16e56640c982064be439c7ea2b34bc4b19c70aa10c5ef5a8768f17cea6eb778c.png" />
+<img alt="../_images/5613cb5f704cbc8bfbf122abcb4083cf50ad7f72ffe22def6c04181214c106eb.png" src="../_images/5613cb5f704cbc8bfbf122abcb4083cf50ad7f72ffe22def6c04181214c106eb.png" />
+<img alt="../_images/1073016a7e4811ad07ccba8c0eaa9b2c0ac76eab5d3578d2ec7e0b02ac2c981c.png" src="../_images/1073016a7e4811ad07ccba8c0eaa9b2c0ac76eab5d3578d2ec7e0b02ac2c981c.png" />
+<img alt="../_images/8cb9fdebdb22434810945010e35281ad28b34ddd421849995931825d54f3eb6e.png" src="../_images/8cb9fdebdb22434810945010e35281ad28b34ddd421849995931825d54f3eb6e.png" />
+<img alt="../_images/486613710912f8f4c0238ce41c4c5677e2569ba390138a8352087857292b2c27.png" src="../_images/486613710912f8f4c0238ce41c4c5677e2569ba390138a8352087857292b2c27.png" />
+<img alt="../_images/e891e4a8418bc62a5c70683bec7518b440133301282a0afcf94ff3a3fdbbefd6.png" src="../_images/e891e4a8418bc62a5c70683bec7518b440133301282a0afcf94ff3a3fdbbefd6.png" />
+<img alt="../_images/4ebcd29daecad26b506dac1a7095042ac5902b3a5e224bb866e14728a1ae98c3.png" src="../_images/4ebcd29daecad26b506dac1a7095042ac5902b3a5e224bb866e14728a1ae98c3.png" />
+<img alt="../_images/99d611227e3e04d752ad7d83deddb71064d16b605abfee422db4f98ee2632a26.png" src="../_images/99d611227e3e04d752ad7d83deddb71064d16b605abfee422db4f98ee2632a26.png" />
+<img alt="../_images/9d54e67874285255b4a2a9978c249f0c45d12bcbec573efba48d84bd9e5abbc3.png" src="../_images/9d54e67874285255b4a2a9978c249f0c45d12bcbec573efba48d84bd9e5abbc3.png" />
+<img alt="../_images/6b55406341792d384226fce711b1016e650c8be85bd12caaac147d241c3e2f2a.png" src="../_images/6b55406341792d384226fce711b1016e650c8be85bd12caaac147d241c3e2f2a.png" />
+<img alt="../_images/b7bc2c3d6ccc160998382781e708e96ad78147a9d3e7bf80cb41a587081267f9.png" src="../_images/b7bc2c3d6ccc160998382781e708e96ad78147a9d3e7bf80cb41a587081267f9.png" />
+<img alt="../_images/156203282f03e6e894b19d1c615895977d39a149f6981ef1776b1c4c49d9504e.png" src="../_images/156203282f03e6e894b19d1c615895977d39a149f6981ef1776b1c4c49d9504e.png" />
+<img alt="../_images/b738073013509f0a6597b7f45c07a4c47d0394bd15671b09c5b6df01c037bac1.png" src="../_images/b738073013509f0a6597b7f45c07a4c47d0394bd15671b09c5b6df01c037bac1.png" />
+<img alt="../_images/569b35082d3281d03675c7c772f9fdcdc943864b16d06b9cecaec1d635def86b.png" src="../_images/569b35082d3281d03675c7c772f9fdcdc943864b16d06b9cecaec1d635def86b.png" />
+<img alt="../_images/32f0a8a087fb741654d3d80fbf2495cf7018183ee8c0a10f87ad76d44b20cd7d.png" src="../_images/32f0a8a087fb741654d3d80fbf2495cf7018183ee8c0a10f87ad76d44b20cd7d.png" />
+<img alt="../_images/8c9bf4cd9b1e7539ed234b405e1621c4f61dc9bb5c7b23dda26857ac39c4037d.png" src="../_images/8c9bf4cd9b1e7539ed234b405e1621c4f61dc9bb5c7b23dda26857ac39c4037d.png" />
+<img alt="../_images/2e26f19f5bda58c1ed83613b271e6e175650155613daf6a09f9d52839d124be9.png" src="../_images/2e26f19f5bda58c1ed83613b271e6e175650155613daf6a09f9d52839d124be9.png" />
+<img alt="../_images/3a1e7f9c60f3bcea115912576f08047e504c7ca8e16a43bba7adc55f49c2eb2a.png" src="../_images/3a1e7f9c60f3bcea115912576f08047e504c7ca8e16a43bba7adc55f49c2eb2a.png" />
+<img alt="../_images/5b493d85c8300b0d35684692e1be5d6196f50743f23b7402cc198672a9a74af4.png" src="../_images/5b493d85c8300b0d35684692e1be5d6196f50743f23b7402cc198672a9a74af4.png" />
+</div>
+</div>
+<section id="simulating-whether-there-was-a-gain-at-some-point">
+<h2>Simulating whether there was a gain at some point<a class="headerlink" href="#simulating-whether-there-was-a-gain-at-some-point" title="Permalink to this heading">#</a></h2>
+<p>What is checked is whether there was a point where the balance was greater than the initial balance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">bet_amount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">gain</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">money_history</span> <span class="ow">in</span> <span class="n">money_histories</span><span class="p">[</span><span class="n">bet_amount</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">gain_at_some_point</span><span class="p">(</span><span class="n">money_history</span><span class="p">):</span>
+            <span class="n">gain</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loss</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;gain&#39;</span><span class="p">,</span> <span class="s1">&#39;loss&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">gain</span><span class="p">,</span> <span class="n">loss</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bet_amount: </span><span class="si">{</span><span class="n">bet_amount</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a80dc22038a0c2983ca549945b05c1794f63d5eb76c80e4e4e9aa4e889157693.png" src="../_images/a80dc22038a0c2983ca549945b05c1794f63d5eb76c80e4e4e9aa4e889157693.png" />
+<img alt="../_images/f232c30e65007f3978a20ed4905e837acf8575c69baf1a78a4f52e266c7a4658.png" src="../_images/f232c30e65007f3978a20ed4905e837acf8575c69baf1a78a4f52e266c7a4658.png" />
+<img alt="../_images/b69825f6f81be949eed273606bf1e1bc011439a641b1017dfb4cc78a88f96b66.png" src="../_images/b69825f6f81be949eed273606bf1e1bc011439a641b1017dfb4cc78a88f96b66.png" />
+<img alt="../_images/66e5570f7eb845b2e29bb019a5e2f4a9fb2ea1db20a165706f6ce88ba03a8e16.png" src="../_images/66e5570f7eb845b2e29bb019a5e2f4a9fb2ea1db20a165706f6ce88ba03a8e16.png" />
+<img alt="../_images/054286138289e09a34afc995d4689dd2038580cc87a3b5517337d5bf4948ab0a.png" src="../_images/054286138289e09a34afc995d4689dd2038580cc87a3b5517337d5bf4948ab0a.png" />
+<img alt="../_images/2ebd4488aa64426f044c1ca0a166d09539c078f805466164c5e1519af3e6d4b8.png" src="../_images/2ebd4488aa64426f044c1ca0a166d09539c078f805466164c5e1519af3e6d4b8.png" />
+<img alt="../_images/6483e211820df1e574c41e5fcf74f88d9def1ee53a82ead2cd01d5ab323ec46e.png" src="../_images/6483e211820df1e574c41e5fcf74f88d9def1ee53a82ead2cd01d5ab323ec46e.png" />
+<img alt="../_images/e19412145105c697e3b60e33a382fef17eaa357a4cba8699ff39be0b99917ab8.png" src="../_images/e19412145105c697e3b60e33a382fef17eaa357a4cba8699ff39be0b99917ab8.png" />
+<img alt="../_images/4a198b084de0f3168a1bd663712cb9e0fb2ce9cefc8fe72f31779718c990713e.png" src="../_images/4a198b084de0f3168a1bd663712cb9e0fb2ce9cefc8fe72f31779718c990713e.png" />
+<img alt="../_images/08f6ed21437a0465c3d1f29b6d831eded7497478d919c27afbcd0e026eee12be.png" src="../_images/08f6ed21437a0465c3d1f29b6d831eded7497478d919c27afbcd0e026eee12be.png" />
+</div>
+</div>
+</section>
+<section id="simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">
+<h2>Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet<a class="headerlink" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">bet_amount</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">plot_number_of_bets</span><span class="p">(</span><span class="n">money_histories</span><span class="p">[</span><span class="n">bet_amount</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;Number of bets for bet_amount: </span><span class="si">{</span><span class="n">bet_amount</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f37a4fd01e14748aae8ae78090a61927cbd133f7ed468a64340b1ed14ff176c3.png" src="../_images/f37a4fd01e14748aae8ae78090a61927cbd133f7ed468a64340b1ed14ff176c3.png" />
+<img alt="../_images/246bb3d892e4df59dda70dfb1aab3a8f2867fa0603629004fa48d92aa366d583.png" src="../_images/246bb3d892e4df59dda70dfb1aab3a8f2867fa0603629004fa48d92aa366d583.png" />
+<img alt="../_images/6a616cb17c1dfd940948c61fc1e6d9a91b15208cdc4bd3272376601f74173a18.png" src="../_images/6a616cb17c1dfd940948c61fc1e6d9a91b15208cdc4bd3272376601f74173a18.png" />
+<img alt="../_images/9ff632cf3f4fa18ac6b7ec7bdd8d89ef1bdbd2ddc3e1ebc99d72ead55f1fb0c2.png" src="../_images/9ff632cf3f4fa18ac6b7ec7bdd8d89ef1bdbd2ddc3e1ebc99d72ead55f1fb0c2.png" />
+<img alt="../_images/bdde062b7c0fd742e2890e9cbb9ec23289cb80b28933feb2b284f8ce7a451de7.png" src="../_images/bdde062b7c0fd742e2890e9cbb9ec23289cb80b28933feb2b284f8ce7a451de7.png" />
+<img alt="../_images/6834c0ffa788bf6ac2fc1098cb20301dcfac488db59b8a2276c7057cc6693983.png" src="../_images/6834c0ffa788bf6ac2fc1098cb20301dcfac488db59b8a2276c7057cc6693983.png" />
+<img alt="../_images/c6166bfad1c5948a066681937bf310dd49aa8df02fad5ad19281ee81938bd93f.png" src="../_images/c6166bfad1c5948a066681937bf310dd49aa8df02fad5ad19281ee81938bd93f.png" />
+<img alt="../_images/bdadc813fa57d51bb46d24db6f6cb582c5c76e090ed3f24a1220670e7c404cf4.png" src="../_images/bdadc813fa57d51bb46d24db6f6cb582c5c76e090ed3f24a1220670e7c404cf4.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./simulator_code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="single_betting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Endless single betting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="andrucci_simulation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Andrucci simulation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-whether-there-was-a-gain-at-some-point">Simulating whether there was a gain at some point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-how-many-bets-are-needed-for-bankruptcy-depending-on-the-percentage-of-the-initial-balance-that-is-bet">Simulating how many bets are needed for bankruptcy, depending on the percentage of the initial balance that is bet</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ana Marija Atanasovska & Alek Jarmov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
