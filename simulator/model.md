@@ -1,6 +1,6 @@
 # Model explanation
 
-Our model of the roulette is an European style roulette, that means that the black and red numbers go from 1 to 36 and there is one 0 (for example in American roulette there are two fields with 0). The way the betting works is that in our model you can't pick which numbers to vote on, but what is picked is the amount of numbers that are bet on. This is because without losing generality all the betting strategies can be shown like that. So if we are are voting a on k fields, the model uniformly picks a number in the range [0, 36] and if the number is in the range [1, k] the bet is won, otherwise the bet is lost. The formula for calculating the winning coefficient of the bet is (36 / num_betting_fields) - 1.
+Our model of the roulette is an European style roulette, that means that the black and red numbers go from 1 to 36 and there is one 0 (for example in American roulette there are two fields with 0). The way the betting works is that in our model you can pick which numbers to vote on or the amount of numbers that are bet on. So if we are are voting a on k fields, the model uniformly picks a number in the range [0, 36] and if the number is in the range [1, k] the bet is won, otherwise the bet is lost. The formula for calculating the winning coefficient of the bet is (36 / num_betting_fields) - 1.
 
 The code implementation of the model is the following:
 

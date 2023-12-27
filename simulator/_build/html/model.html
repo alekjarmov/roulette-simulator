@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'model';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Calculating the expected values depending on the number of selcted numbers" href="simulator_code/expected_values.html" />
-    <link rel="prev" title="Checking if the roulette wheel is fair" href="simulator_code/roulette_test.html" />
+    <link rel="next" title="Checking if the roulette wheel is fair" href="simulator_code/roulette_test.html" />
+    <link rel="prev" title="Roulette simulator" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,8 +169,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="simulator_code/roulette_test.html">Checking if the roulette wheel is fair</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Model explanation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulator_code/roulette_test.html">Checking if the roulette wheel is fair</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simulator_code/expected_values.html">Calculating the expected values depending on the number of selcted numbers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simulator_code/single_betting.html">Endless single betting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simulator_code/half_betting.html">Endless halfbetting</a></li>
@@ -379,7 +379,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="model-explanation">
 <h1>Model explanation<a class="headerlink" href="#model-explanation" title="Permalink to this heading">#</a></h1>
-<p>Our model of the roulette is an European style roulette, that means that the black and red numbers go from 1 to 36 and there is one 0 (for example in American roulette there are two fields with 0). The way the betting works is that in our model you can’t pick which numbers to vote on, but what is picked is the amount of numbers that are bet on. This is because without losing generality all the betting strategies can be shown like that. So if we are are voting a on k fields, the model uniformly picks a number in the range [0, 36] and if the number is in the range [1, k] the bet is won, otherwise the bet is lost. The formula for calculating the winning coefficient of the bet is (36 / num_betting_fields) - 1.</p>
+<p>Our model of the roulette is an European style roulette, that means that the black and red numbers go from 1 to 36 and there is one 0 (for example in American roulette there are two fields with 0). The way the betting works is that in our model you can pick which numbers to vote on or the amount of numbers that are bet on. So if we are are voting a on k fields, the model uniformly picks a number in the range [0, 36] and if the number is in the range [1, k] the bet is won, otherwise the bet is lost. The formula for calculating the winning coefficient of the bet is (36 / num_betting_fields) - 1.</p>
 <p>The code implementation of the model is the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="k">class</span> <span class="nc">Roulette</span><span class="p">:</span>
@@ -466,20 +466,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="simulator_code/roulette_test.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Checking if the roulette wheel is fair</p>
+        <p class="prev-next-title">Roulette simulator</p>
       </div>
     </a>
     <a class="right-next"
-       href="simulator_code/expected_values.html"
+       href="simulator_code/roulette_test.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Calculating the expected values depending on the number of selcted numbers</p>
+        <p class="prev-next-title">Checking if the roulette wheel is fair</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -4,8 +4,8 @@
 format: jb-book
 root: intro
 chapters:
-- file: simulator_code/roulette_test
 - file: model
+- file: simulator_code/roulette_test
 - file: simulator_code/expected_values
 - file: simulator_code/single_betting
 - file: simulator_code/half_betting
